@@ -1,3 +1,10 @@
+import 'package:flutter/material.dart';
+
 void main(){
-  print("Primeiro código");
+  runApp(MaterialApp(
+    title: "Teste",
+    home: Column(children: [
+      Text("VTR Effects")
+    ],),
+  ));
 }
