@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void main(){
   runApp(
-      Login()
+      SobreEmpresa()
   );
 }
 
@@ -16,6 +16,27 @@ class FaleConosco extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(onPressed: null, icon: Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),),
           title: Text("Fale Conosco"),
+          backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
+
+        ),
+        body: Container(
+          color: Color.fromRGBO(4, 18, 31, 1),
+        ),
+      ),
+    );
+  }
+}
+
+
+class SobreEmpresa extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Teste",
+      home: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(onPressed: null, icon: Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),),
+          title: Text("Nossa História"),
           backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
 
         ),
