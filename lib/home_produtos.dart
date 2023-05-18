@@ -80,15 +80,18 @@ class _HomeState extends State<Home> {
                 print("TEM TODOS");
                 print(snapshot.data);
 
-                return Container(
-                  padding: EdgeInsets.fromLTRB(13, 15, 13, 10),
+
+                return SingleChildScrollView( child: Container(
+                  padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
                   width: double.infinity,
-                  //height: 1000,
+                 //height: 800,
+                  height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
-                    // border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
+                    //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
                     color: Color.fromRGBO(4, 18, 31, 1),
                   ),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Align(
                         alignment: Alignment.topLeft,
@@ -104,9 +107,10 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-                      SizedBox(
-                        //height: 1000,
+                      Container(
+                        height: 300,
                         child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                             itemCount: snapshot.data!["meus_produtos"].length,
                             itemBuilder: (context, indice){
                               return Card(
@@ -166,9 +170,11 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-                      SizedBox(
-                        //height: 1000,
+                      Container(
+                        height: 400,
+                        //height: MediaQuery.of(context).size.height,
                         child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                             itemCount: snapshot.data!["produtos"].length,
                             itemBuilder: (context, indice){
                               return Card(
@@ -216,7 +222,7 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-                );
+                ));
               } else if(snapshot.data!["meus_produtos"] == []){
                   return Container(
                   padding: EdgeInsets.fromLTRB(13, 15, 13, 10),
