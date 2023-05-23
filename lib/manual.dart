@@ -9,25 +9,23 @@ import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
 
-class FaleConosco extends StatefulWidget {
-  //const FaleConosco({Key? key}) : super(key: key);
-
-  String email;
-  String password;
+class Manual extends StatefulWidget {
+   String email;
+   String password;
   // String id_produto;
-  String id_user;
+   String id_user;
 
-  FaleConosco(this.email, this.password, this.id_user);
+   Manual(this.email, this.password, this.id_user);
 
   @override
-  State<FaleConosco> createState() => _FaleConoscoState();
+  State<Manual> createState() => _ManualState();
 }
 
-class _FaleConoscoState extends State<FaleConosco> {
+class _ManualState extends State<Manual> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Teste",
+      title: "Manual",
       home: Scaffold(
         drawer: Drawer(
           backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
@@ -73,10 +71,10 @@ class _FaleConoscoState extends State<FaleConosco> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromRGBO(189, 177, 51, 1),
-                              width: 1.5
-                          ),
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
                         )
                     ),
                     child: Center(
@@ -100,10 +98,10 @@ class _FaleConoscoState extends State<FaleConosco> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromRGBO(189, 177, 51, 1),
-                              width: 1.5
-                          ),
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
                         )
                     ),
                     child: Center(
@@ -127,10 +125,10 @@ class _FaleConoscoState extends State<FaleConosco> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromRGBO(189, 177, 51, 1),
-                              width: 1.5
-                          ),
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
                         )
                     ),
                     child: Center(
@@ -193,7 +191,7 @@ class _FaleConoscoState extends State<FaleConosco> {
             );
           },),
           title: Text(
-            "Fale Conosco",
+            "Manual",
             style: TextStyle(
                 color: Color.fromRGBO(189, 177, 51, 1)
             ),
@@ -203,6 +201,16 @@ class _FaleConoscoState extends State<FaleConosco> {
         ),
         body: Container(
           color: Color.fromRGBO(4, 18, 31, 1),
+          child: Column(
+            children: [
+              Center(
+                child: Text("O Helios Overdrive é um pedal de overdrive analógico com recursos digitais avançados. Com uma ampla gama de opções de personalização, oferece o timbre perfeito para seu som. Desde sutis saturações até drives intensos, o Helios proporciona uma resposta dinâmica e orgânica. Com recursos únicos e versatilidade excepcional, é o pedal de overdrive ideal para elevar sua expressão musical. 6 modos de clipagens únicos para diversificar o seu timbre de overdrive, além disso você poderá expandir as clipagens com a funcionalidade de expansão de clipagens. O Bypass inteligente do Helios te permitirá aplicar o efeito a trechos específicos. Tecnologia de ponta para entregar muito timbre e funcionalides. Circuito de Áudio 100% Analógico junto com MCU ARM a 240Mhz. Recursos únicos que ocupam pouquíssimo espaço no seu board.",
+                  style: TextStyle(
+                    color: Color.fromRGBO(189, 177, 51, 1)
+                  ),),
+              )
+            ],
+          ),
         ),
       ),
     );

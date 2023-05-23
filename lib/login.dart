@@ -124,7 +124,7 @@ class Login extends StatelessWidget {
                           );
 
                           data_login = json.decode(response.body);
-                          print(data_login["status_code"]);
+                          print(data_login);
 
                           if (data_login["status_code"] == 404){
 

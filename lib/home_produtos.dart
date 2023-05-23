@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pi5vtr/fale_conosco.dart';
 import "dart:convert";
+import 'package:pi5vtr/manual.dart';
+import 'package:pi5vtr/garantia.dart';
+import 'package:pi5vtr/produto.dart';
+import 'package:pi5vtr/login.dart';
+import 'package:pi5vtr/home_produtos.dart';
+import 'package:pi5vtr/sobre.dart';
 
 class Home extends StatefulWidget {
   //const Home({Key? key}) : super(key: key);
@@ -52,10 +59,10 @@ class _HomeState extends State<Home> {
     for(int i =0; i < data_home["produtos"].length; i++){
       produtos.add(data_home["produtos"][i]);
     }
-
     return data_home;
-
   }
+
+  TextEditingController _productController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +70,177 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       title: "Teste",
       home: Scaffold(
-          drawer: Drawer(),
+
+          drawer: Drawer(
+            backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
+            child: Column(
+              children: [
+                ListTile(
+                  title: Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 15), child: Center(child: Text("Menu", style: TextStyle(fontWeight: FontWeight.w800,fontSize: 30, color: Color.fromRGBO(189, 177, 51, 1)),))),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: Color.fromRGBO(189, 177, 51, 1),
+                                  width: 1.5
+                              ),
+                              top: BorderSide(
+                                  color: Color.fromRGBO(189, 177, 51, 1),
+                                  width: 1.5
+                              )
+                          )
+                      ),
+                      child: Center(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              },
+                              child: Text(
+                                  "Home", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
+                              ),
+                            )
+                        ),
+                      )
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
+                          )
+                      ),
+                      child: Center(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: TextButton(
+                              onPressed: (){
+                                //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              },
+                              child: Text(
+                                  "Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
+                              ),
+                            )
+                        ),
+                      )
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
+                          )
+                      ),
+                      child: Center(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: TextButton(
+                              onPressed: (){
+                                //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              },
+                              child: Text(
+                                  "Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
+                              ),
+                            )
+                        ),
+                      )
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
+                          )
+                      ),
+                      child: Center(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.id_user)));
+                              },
+                              child: Text(
+                                  "Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
+                              ),
+                            )
+                        ),
+                      )
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                                width: 1.5
+                            ),
+                          )
+                      ),
+                      child: Center(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.id_user)));
+                              },
+                              child: Text(
+                                  "Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
+                              ),
+                            )
+                        ),
+                      )
+                  ),
+                ),
+                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
+                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
+                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
+                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
+              ],
+            ),
+          ),
+
+
           appBar: AppBar(
             centerTitle: true,
-            //leading: IconButton(onPressed: null, icon: Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),),
+
+            //leading: IconButton(onPressed: () => Scaffold.of(context).openDrawer(), icon: Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),),
+
+            leading: Builder(builder: (BuildContext context){
+                return IconButton(
+                  icon: const Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                );
+            },),
+
+
             title: Text(
               "Home",
               style: TextStyle(
@@ -83,14 +257,13 @@ class _HomeState extends State<Home> {
 
               if(snapshot.hasData){
 
-                if(snapshot.data!["meus_produtos"] != [] && snapshot.data!["produtos"] != []){
+                if(snapshot.data!["meus_produtos"].length != 0 && snapshot.data!["produtos"].length != 0){
                   print("TEM TODOS");
                   print(snapshot.data);
 
                   return SingleChildScrollView( child: Container(
                     padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
                     width: double.infinity,
-                   //height: 800,
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
                       //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
@@ -113,18 +286,18 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-
-
-
-
-
                         Container(
                           height: 300,
                           child: ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["meus_produtos"].length,
                               itemBuilder: (context, indice){
-                                return Card(
+                                return GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.id_user)));
+                                  },
+                                  child: Card(
+                                    key: snapshot.data!["id_produto"],
                                   margin: EdgeInsets.only(bottom: 10),
                                   color: Color.fromRGBO(4, 18, 31, 1),
                                   shape: RoundedRectangleBorder(
@@ -163,7 +336,7 @@ class _HomeState extends State<Home> {
                                       ],
                                     ),
                                   ),
-                                );
+                                ),);
                               }
                           ),
                         ),
@@ -231,67 +404,101 @@ class _HomeState extends State<Home> {
                               }
                           ),
                         ),
-
-
                       ],
                     ),
                   ));
 
-                } else if(snapshot.data!["meus_produtos"] == []){
-                    return Container(
-                      height: 400,
-                      //height: MediaQuery.of(context).size.height,
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: snapshot.data!["produtos"].length,
-                          itemBuilder: (context, indice){
-                            return Card(
-                              margin: EdgeInsets.only(bottom: 10),
-                              color: Color.fromRGBO(4, 18, 31, 1),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                side: BorderSide(
-                                  width: 1.5,
-                                  color: Color.fromRGBO(189, 177, 51, 1),
-                                ),
+                } else if(snapshot.data!["meus_produtos"].length == 0){
+                  return SingleChildScrollView( child: Container(
+                    padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
+                    width: double.infinity,
+                    //height: 800,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
+                      color: Color.fromRGBO(4, 18, 31, 1),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            child: Text(
+                              "Produtos",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 23,
+                                  color: Color.fromRGBO(189, 177, 51, 1)
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-                                child: Column(
-                                  children: <Widget>[
-                                    ListTile(
-                                      leading: Image.asset(
-                                          "images/pedal_azul2.jpg"
-                                      ),
-                                      title: Padding(
-                                        padding: EdgeInsets.fromLTRB(0, 0, 0, 23),
-                                        child: Text(
-                                          snapshot.data!["produtos"][indice]["nome_produto"],
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700,
-                                              color: Color.fromRGBO(189, 177, 51, 1)
+                            ),
+                          ),
+                        ),
+                        Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+                        Container(
+                          height: 400,
+                          //height: MediaQuery.of(context).size.height,
+                          child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: snapshot.data!["produtos"].length,
+                              itemBuilder: (context, indice){
+                                return Card(
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  color: Color.fromRGBO(4, 18, 31, 1),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    side: BorderSide(
+                                      width: 1.5,
+                                      color: Color.fromRGBO(189, 177, 51, 1),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
+                                    child: Column(
+                                      children: <Widget>[
+                                        ListTile(
+                                          leading: Image.asset(
+                                              "images/pedal_azul2.jpg"
+                                          ),
+                                          title: Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 0, 0, 23),
+                                            child: Text(
+                                              snapshot.data!["produtos"][indice]["nome_produto"],
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color.fromRGBO(189, 177, 51, 1)
+                                              ),
+                                            ),
+                                          ),
+                                          subtitle: Text(
+                                            'Pedal de efeito muito brabo XPTO',
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(189, 177, 51, 1)
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      subtitle: Text(
-                                        'Pedal de efeito muito brabo XPTO',
-                                        style: TextStyle(
-                                            color: Color.fromRGBO(189, 177, 51, 1)
-                                        ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }
-                      ),
-                    );
+                                  ),
+                                );
+                              }
+                          ),
+                        ),
+                      ],
+                    ),
+                  ));
                 }
 
               }
-              return Text("snapshot.data.toString()");
+              return Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(4, 18, 31, 1)
+                ),
+                child: Icon(Icons.dangerous),
+              );
             }
           )
       ),
