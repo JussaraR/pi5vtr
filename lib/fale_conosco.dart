@@ -175,10 +175,6 @@ class _FaleConoscoState extends State<FaleConosco> {
                     )
                 ),
               ),
-              //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
-              //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
-              //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
-              //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
             ],
           ),
         ),

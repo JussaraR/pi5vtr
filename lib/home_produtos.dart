@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pi5vtr/fale_conosco.dart';
@@ -8,9 +10,10 @@ import 'package:pi5vtr/produto.dart';
 import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
+import 'package:pi5vtr/card_produto.dart';
 
 class Home extends StatefulWidget {
-  //const Home({Key? key}) : super(key: key);
+
   String email;
   String password;
   String id_user;
@@ -62,15 +65,12 @@ class _HomeState extends State<Home> {
     return data_home;
   }
 
-  TextEditingController _productController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
 
     return MaterialApp(
       title: "Teste",
       home: Scaffold(
-
           drawer: Drawer(
             backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
             child: Column(
@@ -217,10 +217,6 @@ class _HomeState extends State<Home> {
                       )
                   ),
                 ),
-                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
-                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
-                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
-                //Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Container(width: double.infinity, decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(189, 177, 51, 1), width: 1.5))), child: Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15), child: Text("Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1)),)),)),),
               ],
             ),
           ),
@@ -228,9 +224,6 @@ class _HomeState extends State<Home> {
 
           appBar: AppBar(
             centerTitle: true,
-
-            //leading: IconButton(onPressed: () => Scaffold.of(context).openDrawer(), icon: Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),),
-
             leading: Builder(builder: (BuildContext context){
                 return IconButton(
                   icon: const Icon(Icons.menu, color: Color.fromRGBO(189, 177, 51, 1), size: 40,),
@@ -270,7 +263,7 @@ class _HomeState extends State<Home> {
                       color: Color.fromRGBO(4, 18, 31, 1),
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
                           alignment: Alignment.topLeft,
@@ -286,57 +279,12 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-                        Container(
-                          height: 300,
+                        Expanded(
                           child: ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["meus_produtos"].length,
                               itemBuilder: (context, indice){
-                                return GestureDetector(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.id_user)));
-                                  },
-                                  child: Card(
-                                    key: snapshot.data!["id_produto"],
-                                  margin: EdgeInsets.only(bottom: 10),
-                                  color: Color.fromRGBO(4, 18, 31, 1),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    side: BorderSide(
-                                      width: 1.5,
-                                      color: Color.fromRGBO(189, 177, 51, 1),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-                                    child: Column(
-                                      children: <Widget>[
-                                        ListTile(
-                                          leading: Image.asset(
-                                              "images/pedal_azul2.jpg"
-                                          ),
-                                          title: Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 0, 0, 23),
-                                            child: Text(
-                                              snapshot.data!["meus_produtos"][indice]["nome_produto"],
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color.fromRGBO(189, 177, 51, 1)
-                                              ),
-                                            ),
-                                          ),
-                                          subtitle: Text(
-                                            'Pedal de efeito muito brabo XPTO',
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(189, 177, 51, 1)
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),);
+                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][indice]["id_Produtos"], snapshot.data!["meus_produtos"][indice]["nome_produto"], "images/pedal_azul2.jpg", "true");
                               }
                           ),
                         ),
@@ -354,53 +302,14 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-                        Container(
-                          height: 400,
+                        Expanded(
+                          //height: 400,
                           //height: MediaQuery.of(context).size.height,
                           child: ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["produtos"].length,
                               itemBuilder: (context, indice){
-                                return Card(
-                                  margin: EdgeInsets.only(bottom: 10),
-                                  color: Color.fromRGBO(4, 18, 31, 1),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    side: BorderSide(
-                                      width: 1.5,
-                                      color: Color.fromRGBO(189, 177, 51, 1),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-                                    child: Column(
-                                      children: <Widget>[
-                                        ListTile(
-                                          leading: Image.asset(
-                                              "images/pedal_azul2.jpg"
-                                          ),
-                                          title: Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 0, 0, 23),
-                                            child: Text(
-                                              snapshot.data!["produtos"][indice]["nome_produto"],
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color.fromRGBO(189, 177, 51, 1)
-                                              ),
-                                            ),
-                                          ),
-                                          subtitle: Text(
-                                            'Pedal de efeito muito brabo XPTO',
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(189, 177, 51, 1)
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
+                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][indice]["id_Produtos"], snapshot.data!["produtos"][indice]["nome_produto"], "images/pedal_azul2.jpg", "false");
                               }
                           ),
                         ),
@@ -412,7 +321,6 @@ class _HomeState extends State<Home> {
                   return SingleChildScrollView( child: Container(
                     padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
                     width: double.infinity,
-                    //height: 800,
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
                       //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
@@ -497,7 +405,7 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(4, 18, 31, 1)
                 ),
-                child: Icon(Icons.dangerous),
+                child: Icon(Icons.dangerous_rounded, color: Colors.white, size: 50,),
               );
             }
           )
