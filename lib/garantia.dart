@@ -13,16 +13,51 @@ class Garantia extends StatefulWidget {
 
   String email;
   String password;
-  // String id_produto;
+  String id_produto;
   String id_user;
 
-  Garantia(this.email, this.password, this.id_user);
+  Garantia(this.email, this.password, this.id_user, this.id_produto);
 
   @override
   State<Garantia> createState() => _GarantiaState();
 }
 
 class _GarantiaState extends State<Garantia> {
+
+
+  Future<Map> homeApi() async {
+
+    Map<String, dynamic> data_home;
+
+    String url = "http://192.168.31.92:8080/garantia";
+    http.Response response;
+
+    String id_user = widget.id_user;
+    String email = widget.email;
+    String password = widget.password;
+    String id_produto = widget.id_produto;
+
+    Map<String, String> header = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    response = await http.post(
+      url,
+      headers: header,
+      body: jsonEncode(<String, String>{
+        'email': email,
+        'password': password,
+        'id_user': id_user,
+        'id_produto': id_produto
+      }),
+    );
+
+    data_home = json.decode(response.body);
+
+    return data_home;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -198,6 +233,34 @@ class _GarantiaState extends State<Garantia> {
         ),
         body: Container(
           color: Color.fromRGBO(4, 18, 31, 1),
+          child: Column(
+            children: [
+              Text(
+                  "A garantia dos produtos VTR Effects é de 1 ano, sendo válida para próximos donos do mesmo produto estando dentro do período de 1 ano de garantia.",
+                style: TextStyle(
+                    color: Color.fromRGBO(189, 177, 51, 1)
+                ),
+              ),
+              Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+              Row(
+                children: [
+                  Text(
+                    "Sua garantia é valida até: ",
+                    style: TextStyle(
+                        color: Color.fromRGBO(189, 177, 51, 1)
+                    ),
+                  ),
+                  Text(
+                      "20/03/2023",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                        color: Color.fromRGBO(189, 177, 51, 1)
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

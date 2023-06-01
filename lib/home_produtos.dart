@@ -284,7 +284,7 @@ class _HomeState extends State<Home> {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["meus_produtos"].length,
                               itemBuilder: (context, indice){
-                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][indice]["id_Produtos"], snapshot.data!["meus_produtos"][indice]["nome_produto"], "images/pedal_azul2.jpg", "true");
+                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][indice]["id_Produtos"], snapshot.data!["meus_produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][indice]["img1"], "true");
                               }
                           ),
                         ),
@@ -309,7 +309,7 @@ class _HomeState extends State<Home> {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["produtos"].length,
                               itemBuilder: (context, indice){
-                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][indice]["id_Produtos"], snapshot.data!["produtos"][indice]["nome_produto"], "images/pedal_azul2.jpg", "false");
+                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][indice]["id_Produtos"], snapshot.data!["produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][indice]["img1"], "false");
                               }
                           ),
                         ),
@@ -399,14 +399,17 @@ class _HomeState extends State<Home> {
                 }
 
               }
+
               return Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(4, 18, 31, 1)
+                    color: Color.fromRGBO(4, 18, 31, 1)
                 ),
                 child: Icon(Icons.dangerous_rounded, color: Colors.white, size: 50,),
               );
+
+
             }
           )
       ),

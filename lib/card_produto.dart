@@ -11,6 +11,7 @@ import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
 
+
 class cardProduto extends StatefulWidget {
   //const cardProduto({Key? key}) : super(key: key);
 
@@ -24,11 +25,12 @@ class cardProduto extends StatefulWidget {
 
   //usados para construir o card
   String nome_produto;
+  String descricao_encurtada;
   String foto_produto;
   //String descricao_pequena
 
 
-  cardProduto(this.email, this.password, this.id_user, this.id_produto, this.nome_produto, this.foto_produto, this.is_owner);
+  cardProduto(this.email, this.password, this.id_user, this.id_produto, this.nome_produto, this.descricao_encurtada, this.foto_produto, this.is_owner);
 
   @override
   State<cardProduto> createState() => _cardProdutoState();
@@ -71,7 +73,7 @@ class _cardProdutoState extends State<cardProduto> {
                   ),
                 ),
                 subtitle: Text(
-                  'Pedal de efeito muito brabo XPTO',
+                  widget.descricao_encurtada,
                   style: TextStyle(
                       color: Color.fromRGBO(189, 177, 51, 1)
                   ),
