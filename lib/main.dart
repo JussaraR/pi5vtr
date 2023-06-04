@@ -9,7 +9,7 @@ import "dart:convert";
 
 void main(){
   runApp(
-      telaPrincipalState()
+      telaLogin()
   );
 }
 

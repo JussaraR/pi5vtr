@@ -230,6 +230,20 @@ class _ProdutoState extends State<Produto> {
               },
             );
           },),
+
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.notifications,
+                      color: Color.fromRGBO(189, 177, 51, 1),
+                      size: 35
+                  ),
+                )
+            ),
+          ],
           backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
 
         ),
@@ -247,11 +261,10 @@ class _ProdutoState extends State<Produto> {
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(4, 18, 31, 1),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
+                        child: ListView(
+                          //mainAxisAlignment: MainAxisAlignment.start,
+                          //mainAxisSize: MainAxisSize.max,
                           children: [
-
                             Row(
                               children: [
                                 Align(

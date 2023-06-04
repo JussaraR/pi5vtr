@@ -6,6 +6,7 @@ import 'package:pi5vtr/fale_conosco.dart';
 import "dart:convert";
 import 'package:pi5vtr/manual.dart';
 import 'package:pi5vtr/garantia.dart';
+import 'package:pi5vtr/notificacoes.dart';
 import 'package:pi5vtr/produto.dart';
 import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
@@ -233,6 +234,21 @@ class _HomeState extends State<Home> {
                 );
             },),
 
+            actions: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: IconButton(
+                    icon: Icon(
+                        Icons.notifications,
+                        color: Color.fromRGBO(189, 177, 51, 1),
+                        size: 35
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.id_user)));
+                    },
+                  ),
+              ),
+            ],
 
             title: Text(
               "Home",
@@ -263,7 +279,7 @@ class _HomeState extends State<Home> {
                       color: Color.fromRGBO(4, 18, 31, 1),
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Align(
                           alignment: Alignment.topLeft,
@@ -281,7 +297,7 @@ class _HomeState extends State<Home> {
                         Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
                         Expanded(
                           child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
+                              //physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["meus_produtos"].length,
                               itemBuilder: (context, indice){
                                 return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][indice]["id_Produtos"], snapshot.data!["meus_produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][indice]["img1"], "true");
