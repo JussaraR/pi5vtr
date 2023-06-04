@@ -2,6 +2,7 @@ import 'package:pi5vtr/home_produtos.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
+import 'package:pi5vtr/login.dart';
 
 class Cadastro extends StatefulWidget {
 
@@ -15,7 +16,15 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _passwordConfirmController = TextEditingController();
+  TextEditingController _cpfCnpjController = TextEditingController();
+
   String mensagemErro = "";
+
+  erroCriarConta(String mensagem){
+    setState(() {
+      mensagemErro = mensagem;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,7 @@ class _CadastroState extends State<Cadastro> {
                             //   "images/vtr_logo.png",
                             // ),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
+                              padding: EdgeInsets.fromLTRB(0, 50, 0, 25),
                               child: Text(
                                 "Criar Conta",
                                 style: TextStyle(
@@ -47,6 +56,15 @@ class _CadastroState extends State<Cadastro> {
                                     fontWeight: FontWeight.w400,
                                     color: Color.fromRGBO(189, 177, 51, 1)
                                 ),
+                              ),
+                            ),
+                            Text(
+                                mensagemErro,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: -0.5,
+                                color: Colors.red,
                               ),
                             ),
                             TextField(
@@ -60,6 +78,25 @@ class _CadastroState extends State<Cadastro> {
                                   disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
                                   label: Text(
                                       "Username",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(189, 177, 51, 0.7),
+                                      )
+                                  ),
+                                  border: OutlineInputBorder()
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                            TextField(
+                              controller: _cpfCnpjController,
+                              style: TextStyle(
+                                color: Color.fromRGBO(189, 177, 51, 1),
+                              ),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  label: Text(
+                                      "CPF/CNPJ",
                                       style: TextStyle(
                                         color: Color.fromRGBO(189, 177, 51, 0.7),
                                       )
@@ -114,6 +151,16 @@ class _CadastroState extends State<Cadastro> {
                             Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                             TextField(
                               controller: _passwordConfirmController,
+                              onChanged: (text){
+                                if(_passwordConfirmController.text != _passwordController.text){
+                                  erroCriarConta("Digite senhas iguas");
+                                }else if (text.isEmpty){
+                                  erroCriarConta("");
+                                }
+                                else {
+                                  erroCriarConta("");
+                                }
+                              },
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 177, 51, 1),
                               ),
@@ -133,59 +180,50 @@ class _CadastroState extends State<Cadastro> {
                                   border: OutlineInputBorder()
                               ),
                             ),                            // Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 5)),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 35, 0, 32),),
+                            Padding(padding: EdgeInsets.fromLTRB(0, 18, 0, 18),),
 
                             ElevatedButton(
                               onPressed: () async {
 
                                 Map<String, dynamic> data_login;
 
-                                String url = "http://192.168.31.92:8080/login";
+                                String url = "http://192.168.31.92:8080/criarconta";
                                 http.Response response;
 
                                 String email = _emailController.text;
                                 String password = _passwordController.text;
+                                String username = _usernameController.text;
+                                String cpf_cnpj = _cpfCnpjController.text;
+                                String data_nascimento = "";
 
-                                Map<String, String> header = {
-                                  'Content-Type': 'application/json; charset=UTF-8',
-                                };
+                                if(_usernameController.text.isEmpty || _cpfCnpjController.text.isEmpty ||  _emailController.text.isEmpty || _passwordController.text.isEmpty || _passwordConfirmController.text.isEmpty){
+                                  erroCriarConta("Digite os dados da conta");
+                                } else {
 
-                                response = await http.post(
-                                  url,
-                                  headers: header,
-                                  body: jsonEncode(<String, String>{
-                                    'email': email,
-                                    'password': password,
-                                  }),
-                                );
+                                  Map<String, String> header = {
+                                    'Content-Type': 'application/json; charset=UTF-8',
+                                  };
 
-                                data_login = json.decode(response.body);
-                                print(data_login);
-
-                                if (data_login["status_code"] == 404){
-                                  //MENSAGEM CASO LOGIN FALHE
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      action: SnackBarAction(
-                                        label: 'Action',
-                                        onPressed: () {
-                                          // Code to execute.
-                                        },
-                                      ),
-                                      content: const Text('Verifique seu email/senha.'),
-                                      duration: const Duration(milliseconds: 1500),
-                                      width: 280.0, // Width of the SnackBar.
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0, // Inner padding for SnackBar content.
-                                      ),
-                                      behavior: SnackBarBehavior.floating,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                    ),
+                                  response = await http.post(
+                                    url,
+                                    headers: header,
+                                    body: jsonEncode(<String, String>{
+                                      'email': email,
+                                      'password': password,
+                                      'data_nascimento': data_nascimento,
+                                      'nome': username,
+                                      'cpf_cnpj':  cpf_cnpj
+                                    }),
                                   );
-                                } else if (data_login["status_code"] == 200){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home(data_login["email"], data_login["password"], data_login["id_user"])));
+
+                                  data_login = json.decode(response.body);
+                                  print(data_login);
+
+                                  if (data_login["status_code"] == 404){
+                                    erroCriarConta(data_login["message"]);
+                                  } else if (data_login["status_code"] == 200){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                                  }
                                 }
                               },
                               child: Text(

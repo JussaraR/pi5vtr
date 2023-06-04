@@ -36,7 +36,6 @@ class _LoginState extends State<Login> {
     setState(() {
       mensagemErro = mensagem;
     });
-
   }
 
   @override
@@ -96,7 +95,7 @@ class _LoginState extends State<Login> {
                                   border: OutlineInputBorder()
                               ),
                             ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 20)),
+                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                             TextField(
                               controller: _passwordController,
                               style: TextStyle(
