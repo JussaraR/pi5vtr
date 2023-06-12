@@ -14,13 +14,10 @@ class telaLogin extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
 class Login extends StatefulWidget {
+  // String mensagemErro;
+  //
+  // Login(this.mensagemErro);
 
   @override
   State<Login> createState() => _LoginState();
@@ -174,7 +171,6 @@ class _LoginState extends State<Login> {
                                   }
                                 }
 
-
                               },
                               child: Text(
                                 "Entrar",
@@ -192,8 +188,6 @@ class _LoginState extends State<Login> {
                                 backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
                               ),
                             ),
-
-
                             Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 8)),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

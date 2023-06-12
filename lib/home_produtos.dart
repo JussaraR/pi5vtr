@@ -221,8 +221,6 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-
-
           appBar: AppBar(
             centerTitle: true,
             leading: Builder(builder: (BuildContext context){
@@ -270,68 +268,131 @@ class _HomeState extends State<Home> {
                   print("TEM TODOS");
                   print(snapshot.data);
 
-                  return SingleChildScrollView( child: Container(
-                    padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
-                      color: Color.fromRGBO(4, 18, 31, 1),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                            child: Text(
-                              "Meus Produtos",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 23,
-                                  color: Color.fromRGBO(189, 177, 51, 1)
-                              ),
+
+                  return CustomScrollView(
+                      slivers: [
+                        const SliverAppBar(
+                          leading: null,
+                          automaticallyImplyLeading: false,
+                          backgroundColor: Color.fromRGBO(4, 18, 31, 1),
+                          title: Text(
+                            "Meus Produtos",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Color.fromRGBO(189, 177, 51, 1)
                             ),
                           ),
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-                        Expanded(
-                          child: ListView.builder(
-                              //physics: NeverScrollableScrollPhysics(),
-                              itemCount: snapshot.data!["meus_produtos"].length,
-                              itemBuilder: (context, indice){
-                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][indice]["id_Produtos"], snapshot.data!["meus_produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][indice]["img1"], "true");
-                              }
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(4, 18, 31, 1),
+                                    ),
+                                    child: cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "true")
+                                  );
+                            },
+                            childCount: snapshot.data!["meus_produtos"].length,
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Container(
-                            child: Text(
-                              "Produtos",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 23,
-                                  color: Color.fromRGBO(189, 177, 51, 1)
-                              ),
+                        const SliverAppBar(
+                          leading: null,
+                          automaticallyImplyLeading: false,
+                          backgroundColor: Color.fromRGBO(4, 18, 31, 1),
+                          title: Text(
+                            "Produtos",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Color.fromRGBO(189, 177, 51, 1)
                             ),
                           ),
                         ),
-                        Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-                        Expanded(
-                          //height: 400,
-                          //height: MediaQuery.of(context).size.height,
-                          child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: snapshot.data!["produtos"].length,
-                              itemBuilder: (context, indice){
-                                return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][indice]["id_Produtos"], snapshot.data!["produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][indice]["img1"], "false");
-                              }
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+
+                              return Container(
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(4, 18, 31, 1),
+                                  ),
+                                  child: cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "true")
+                              );
+                              },
+                            childCount: snapshot.data!["produtos"].length,
                           ),
                         ),
                       ],
-                    ),
-                  ));
+                  );
+
+
+
+                  // return SingleChildScrollView(
+                  //     child: Container(
+                  //     padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
+                  //     width: double.infinity,
+                  //     height: MediaQuery.of(context).size.height,
+                  //     decoration: BoxDecoration(
+                  //       //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
+                  //       color: Color.fromRGBO(4, 18, 31, 1),
+                  //     ),
+                  //     child: Column(
+                  //       //mainAxisSize: MainAxisSize.max,
+                  //       children: [
+                  //         Align(
+                  //           alignment: Alignment.topLeft,
+                  //           child: Container(
+                  //             child: Text(
+                  //               "Meus Produtos",
+                  //               textAlign: TextAlign.left,
+                  //               style: TextStyle(
+                  //                   fontSize: 23,
+                  //                   color: Color.fromRGBO(189, 177, 51, 1)
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+                  //         Expanded(
+                  //           child: ListView.builder(
+                  //               physics: NeverScrollableScrollPhysics(),
+                  //               itemCount: snapshot.data!["meus_produtos"].length,
+                  //               itemBuilder: (context, indice){
+                  //                 return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][indice]["id_Produtos"], snapshot.data!["meus_produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][indice]["img1"], "true");
+                  //               }
+                  //           ),
+                  //         ),
+                  //         Align(
+                  //           alignment: Alignment.topLeft,
+                  //           child: Container(
+                  //             child: Text(
+                  //               "Produtos",
+                  //               textAlign: TextAlign.left,
+                  //               style: TextStyle(
+                  //                   fontSize: 23,
+                  //                   color: Color.fromRGBO(189, 177, 51, 1)
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+                  //         Expanded(
+                  //           //height: 400,
+                  //           //height: MediaQuery.of(context).size.height,
+                  //           child: ListView.builder(
+                  //               physics: NeverScrollableScrollPhysics(),
+                  //               itemCount: snapshot.data!["produtos"].length,
+                  //               itemBuilder: (context, indice){
+                  //                 return cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][indice]["id_Produtos"], snapshot.data!["produtos"][indice]["nome_produto"], snapshot.data!["produtos"][indice]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][indice]["img1"], "false");
+                  //               }
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   )
+                  // );
 
                 } else if(snapshot.data!["meus_produtos"].length == 0){
                   return SingleChildScrollView( child: Container(

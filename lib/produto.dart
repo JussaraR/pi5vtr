@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pi5vtr/fale_conosco.dart';
@@ -10,6 +9,7 @@ import 'package:pi5vtr/produto.dart';
 import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
+import 'package:pi5vtr/transferencia.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Produto extends StatefulWidget {
@@ -358,7 +358,7 @@ class _ProdutoState extends State<Produto> {
                                   ),
                                   TextButton(
                                     onPressed: (){
-                                      //Navigator.push(context, MaterialPageRoute(builder: (context) => Transferencia(widget.email, widget.password, widget.id_user)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Transferencia(widget.email, widget.password, widget.id_user, widget.id_produto)));
                                     },
                                     child: Text(
                                         "Transferir produto",
