@@ -12,10 +12,10 @@ import 'package:pi5vtr/sobre.dart';
 class Manual extends StatefulWidget {
    String email;
    String password;
-  // String id_produto;
+  String username;
    String id_user;
 
-   Manual(this.email, this.password, this.id_user);
+   Manual(this.email, this.password, this.username, this.id_user);
 
   @override
   State<Manual> createState() => _ManualState();
@@ -55,7 +55,7 @@ class _ManualState extends State<Manual> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
                             },
                             child: Text(
                                 "Home", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -71,10 +71,10 @@ class _ManualState extends State<Manual> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(189, 177, 51, 1),
-                                width: 1.5
-                            ),
+                          bottom: BorderSide(
+                              color: Color.fromRGBO(189, 177, 51, 1),
+                              width: 1.5
+                          ),
                         )
                     ),
                     child: Center(
@@ -98,10 +98,10 @@ class _ManualState extends State<Manual> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(189, 177, 51, 1),
-                                width: 1.5
-                            ),
+                          bottom: BorderSide(
+                              color: Color.fromRGBO(189, 177, 51, 1),
+                              width: 1.5
+                          ),
                         )
                     ),
                     child: Center(
@@ -125,10 +125,10 @@ class _ManualState extends State<Manual> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(189, 177, 51, 1),
-                                width: 1.5
-                            ),
+                          bottom: BorderSide(
+                              color: Color.fromRGBO(189, 177, 51, 1),
+                              width: 1.5
+                          ),
                         )
                     ),
                     child: Center(
@@ -136,7 +136,7 @@ class _ManualState extends State<Manual> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
                             },
                             child: Text(
                                 "Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -163,7 +163,7 @@ class _ManualState extends State<Manual> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
                             },
                             child: Text(
                                 "Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))

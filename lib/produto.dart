@@ -15,11 +15,12 @@ import 'package:url_launcher/url_launcher.dart';
 class Produto extends StatefulWidget {
    String email;
    String password;
+   String username;
    String id_produto;
    String id_user;
    String is_owner;
 
-  Produto(this.email, this.password, this.id_produto, this.id_user, this.is_owner);
+  Produto(this.email, this.password, this.username, this.id_produto, this.id_user, this.is_owner);
 
   @override
   State<Produto> createState() => _ProdutoState();
@@ -97,7 +98,7 @@ class _ProdutoState extends State<Produto> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
                               },
                               child: Text(
                                   "Home", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -178,7 +179,7 @@ class _ProdutoState extends State<Produto> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
                               },
                               child: Text(
                                   "Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -205,7 +206,7 @@ class _ProdutoState extends State<Produto> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
                               },
                               child: Text(
                                   "Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -250,14 +251,79 @@ class _ProdutoState extends State<Produto> {
           body: FutureBuilder<Map>(
               future: productApi(),
               builder: (context, snapshot) {
-                print(snapshot.data);
 
-                // if (snapshot.hasData) {
+                 if (snapshot.hasData) {
+
+
+                    // return CustomScrollView(
+                    //   slivers: [
+                    //     SliverAppBar(
+                    //       leading: null,
+                    //       automaticallyImplyLeading: false,
+                    //       backgroundColor: Color.fromRGBO(4, 18, 31, 1),
+                    //       title: Column(
+                    //         children: [
+                    //           Row(
+                    //             children: [
+                    //               Align(
+                    //                 alignment: Alignment.topLeft,
+                    //                 child: Container(
+                    //                   child: Text(
+                    //                     snapshot.data!["produto"]["nome_produto"],
+                    //                     textAlign: TextAlign.left,
+                    //                     style: TextStyle(
+                    //                         fontWeight: FontWeight.w700,
+                    //                         fontSize: 23,
+                    //                         color: Color.fromRGBO(189, 177, 51, 1)
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               Spacer(),
+                    //               ElevatedButton(
+                    //                 onPressed: () async {
+                    //                   final Uri url = Uri.parse(snapshot.data!["produto"]["url_produto"]);
+                    //                   await launchUrl(url);
+                    //                 },
+                    //                 style: ButtonStyle(
+                    //                   shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(11.0))),
+                    //                   backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
+                    //                 ),
+                    //                 child: Text(
+                    //                   "Ver na loja",
+                    //                   style: TextStyle(
+                    //                     fontSize: 20,
+                    //                     color: Colors.black,
+                    //                     fontWeight: FontWeight.w400,
+                    //                     fontFamily: 'Arial',
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //           ),
+                    //           Padding(padding: EdgeInsets.fromLTRB(0, 6, 0, 6)),
+                    //
+                    //           Align(
+                    //             alignment: Alignment.topLeft,
+                    //             child: Container(
+                    //               child: Image.asset(
+                    //                   "images/"+snapshot.data!["produto"]["img1"]
+                    //             ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       )
+                    //       ),
+                    //   ],
+                    // );
+
+
                   return SingleChildScrollView(
                       child: Container(
                         padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height,
+                        //height: 3000,
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(4, 18, 31, 1),
                         ),
@@ -326,12 +392,13 @@ class _ProdutoState extends State<Produto> {
                             ),
                             Container(
                               width: double.infinity,
+                              height: 3000,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   TextButton(
                                     onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Garantia(widget.email, widget.password, widget.id_user, widget.id_produto)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Garantia(widget.email, widget.password, widget.username, widget.id_user, widget.id_produto)));
                                     },
                                     child: Text(
                                         "Termo de Garantia",
@@ -345,7 +412,7 @@ class _ProdutoState extends State<Produto> {
 
                                   TextButton(
                                     onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Manual(widget.email, widget.password, widget.id_user)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Manual(widget.email, widget.password, widget.username, widget.id_user)));
                                     },
                                     child: Text(
                                         "Manual",
@@ -358,7 +425,7 @@ class _ProdutoState extends State<Produto> {
                                   ),
                                   TextButton(
                                     onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Transferencia(widget.email, widget.password, widget.id_user, widget.id_produto)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Transferencia(widget.email, widget.password, widget.username, widget.id_user, widget.id_produto)));
                                     },
                                     child: Text(
                                         "Transferir produto",
@@ -367,7 +434,114 @@ class _ProdutoState extends State<Produto> {
                                           decorationThickness: 2,
                                           color: Color.fromRGBO(189, 177, 51, 1)
                                       ),
-                                    )
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+                                  Text(
+                                    "Comentários",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 23,
+                                        color: Color.fromRGBO(189, 177, 51, 1)
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+                                  TextField(
+                                    onSubmitted: (text) async {
+                                      print(text);
+
+                                      Map<String, dynamic> data_comentario;
+
+                                      String url = "http://192.168.31.92:8080/comentario";
+                                      http.Response response;
+
+                                      String comentario = text;
+
+                                      Map<String, String> header = {
+                                        'Content-Type': 'application/json; charset=UTF-8',
+                                      };
+
+                                      response = await http.post(
+                                        url,
+                                        headers: header,
+                                        body: jsonEncode(<String, String>{
+                                          'email': widget.email,
+                                          'password': widget.password,
+                                          'id_user': widget.id_user,
+                                          'id_produto': widget.id_produto,
+                                          'comentario': comentario,
+                                          'username': widget.username
+                                        }),
+                                      );
+
+                                      data_comentario = json.decode(response.body);
+
+                                    },
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(189, 177, 51, 1),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    enableSuggestions: false,
+                                    autocorrect: false,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1, color: Color.fromRGBO(189, 177, 51, 1))),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1, color: Color.fromRGBO(189, 177, 51, 1))),
+                                        label: Text(
+                                            "Escreva um comentário",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(189, 177, 51, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        //physics: NeverScrollableScrollPhysics(),
+                                        itemCount: snapshot.data!["comentarios"].length,
+                                        itemBuilder: (context, indice){
+                                          return Card(
+                                            margin: EdgeInsets.only(bottom: 10),
+                                            color: Color.fromRGBO(4, 18, 31, 1),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                              side: BorderSide(
+                                                width: 1.5,
+                                                color: Color.fromRGBO(189, 177, 51, 1),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  ListTile(
+                                                    title: Padding(
+                                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                                      child: Text(
+                                                        snapshot.data!["comentarios"][indice]["Nome"],
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight: FontWeight.w700,
+                                                            color: Color.fromRGBO(189, 177, 51, 1)
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    subtitle: Text(
+                                                      snapshot.data!["comentarios"][indice]["Comentario"],
+                                                      style: TextStyle(
+                                                          color: Color.fromRGBO(189, 177, 51, 1)
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                    ),
                                   ),
                                 ],
                               ),
@@ -376,7 +550,29 @@ class _ProdutoState extends State<Produto> {
                         ),
                       )
                   );
-                // }
+
+
+
+
+
+
+
+
+
+
+
+                 } else {
+                   return SingleChildScrollView(
+                       child: Container(
+                        padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(4, 18, 31, 1),
+                        )
+                      )
+                   );
+                 }
 
                 // return Container(
                 //   width: double.infinity,

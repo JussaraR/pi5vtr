@@ -167,7 +167,7 @@ class _LoginState extends State<Login> {
                                     erroLogin(data_login["message"]);
 
                                   } else if (data_login["status_code"] == 200){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home(data_login["email"], data_login["password"], data_login["id_user"])));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home(data_login["email"], data_login["password"], data_login["id_user"], data_login["username"])));
                                   }
                                 }
 

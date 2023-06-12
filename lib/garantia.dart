@@ -13,10 +13,11 @@ class Garantia extends StatefulWidget {
 
   String email;
   String password;
+  String username;
   String id_produto;
   String id_user;
 
-  Garantia(this.email, this.password, this.id_user, this.id_produto);
+  Garantia(this.email, this.password, this.username, this.id_user, this.id_produto);
 
   @override
   State<Garantia> createState() => _GarantiaState();
@@ -27,7 +28,7 @@ class _GarantiaState extends State<Garantia> {
 
   Future<Map> homeApi() async {
 
-    Map<String, dynamic> data_home;
+    Map<String, dynamic> data_garantia;
 
     String url = "http://192.168.31.92:8080/garantia";
     http.Response response;
@@ -52,9 +53,9 @@ class _GarantiaState extends State<Garantia> {
       }),
     );
 
-    data_home = json.decode(response.body);
+    data_garantia = json.decode(response.body);
 
-    return data_home;
+    return data_garantia;
   }
 
 
@@ -91,7 +92,7 @@ class _GarantiaState extends State<Garantia> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
                             },
                             child: Text(
                                 "Home", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -172,7 +173,7 @@ class _GarantiaState extends State<Garantia> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
                             },
                             child: Text(
                                 "Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -199,7 +200,7 @@ class _GarantiaState extends State<Garantia> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
                             },
                             child: Text(
                                 "Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -209,7 +210,7 @@ class _GarantiaState extends State<Garantia> {
                     )
                 ),
               ),
-             ],
+            ],
           ),
         ),
         appBar: AppBar(
@@ -236,29 +237,39 @@ class _GarantiaState extends State<Garantia> {
           child: Column(
             children: [
               Text(
-                  "A garantia dos produtos VTR Effects é de 1 ano, sendo válida para próximos donos do mesmo produto estando dentro do período de 1 ano de garantia.",
+                  "A garantia dos produtos VTR Effects é vitalícia para o primeiro dono, sendo válida para os próximos donos do mesmo produto estando dentro do período de 1 ano da data da compra.",
                 style: TextStyle(
                     color: Color.fromRGBO(189, 177, 51, 1)
                 ),
               ),
               Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
-              Row(
-                children: [
-                  Text(
-                    "Sua garantia é valida até: ",
-                    style: TextStyle(
-                        color: Color.fromRGBO(189, 177, 51, 1)
-                    ),
-                  ),
-                  Text(
-                      "20/03/2023",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(189, 177, 51, 1)
-                    ),
-                  )
-                ],
-              )
+
+              FutureBuilder<Map>(
+              future: homeApi(),
+              builder: (context, snapshot) {
+
+                if(snapshot.hasData){
+                  return Row(
+                    children: [
+                      Text(
+                        snapshot.data!["message"],
+                        style: TextStyle(
+                            color: Color.fromRGBO(189, 177, 51, 1)
+                        ),
+                      ),
+                      Text(
+                        snapshot.data!["diaGarantia"],
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromRGBO(189, 177, 51, 1)
+                        ),
+                      )
+                    ],
+                  );
+                } else {
+                  return Text("");
+                }
+              })
             ],
           ),
         ),

@@ -15,10 +15,10 @@ class SobreEmpresa extends StatefulWidget {
 
   String email;
   String password;
-  // String id_produto;
+  String username;
   String id_user;
 
-  SobreEmpresa(this.email, this.password, this.id_user);
+  SobreEmpresa(this.email, this.password, this.username, this.id_user);
 
   @override
   State<SobreEmpresa> createState() => _SobreEmpresaState();
@@ -58,7 +58,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
                             },
                             child: Text(
                                 "Home", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -139,7 +139,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
                             },
                             child: Text(
                                 "Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -166,7 +166,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
                             },
                             child: Text(
                                 "Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))

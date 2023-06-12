@@ -18,8 +18,9 @@ class Home extends StatefulWidget {
   String email;
   String password;
   String id_user;
+  String username;
 
-  Home(this.email, this.password, this.id_user);
+  Home(this.email, this.password, this.id_user, this.username);
 
   @override
   State<Home> createState() => _HomeState();
@@ -100,7 +101,7 @@ class _HomeState extends State<Home> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
                               },
                               child: Text(
                                   "Home", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -181,7 +182,7 @@ class _HomeState extends State<Home> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
                               },
                               child: Text(
                                   "Sobre", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -208,7 +209,7 @@ class _HomeState extends State<Home> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
                               },
                               child: Text(
                                   "Fale Conosco", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -242,7 +243,7 @@ class _HomeState extends State<Home> {
                         size: 35
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.id_user)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.username, widget.id_user)));
                     },
                   ),
               ),
@@ -265,9 +266,6 @@ class _HomeState extends State<Home> {
               if(snapshot.hasData){
 
                 if(snapshot.data!["meus_produtos"].length != 0 && snapshot.data!["produtos"].length != 0){
-                  print("TEM TODOS");
-                  print(snapshot.data);
-
 
                   return CustomScrollView(
                       slivers: [
@@ -291,7 +289,7 @@ class _HomeState extends State<Home> {
                                     decoration: BoxDecoration(
                                       color: Color.fromRGBO(4, 18, 31, 1),
                                     ),
-                                    child: cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "true")
+                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "true")
                                   );
                             },
                             childCount: snapshot.data!["meus_produtos"].length,
@@ -318,7 +316,7 @@ class _HomeState extends State<Home> {
                                   decoration: BoxDecoration(
                                     color: Color.fromRGBO(4, 18, 31, 1),
                                   ),
-                                  child: cardProduto(widget.email, widget.password, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "true")
+                                  child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "true")
                               );
                               },
                             childCount: snapshot.data!["produtos"].length,

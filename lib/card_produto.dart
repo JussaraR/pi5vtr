@@ -17,6 +17,7 @@ class cardProduto extends StatefulWidget {
 
   String email;
   String password;
+  String username;
 
   //usados para consulta na pagina de produto
   String id_user;
@@ -30,7 +31,7 @@ class cardProduto extends StatefulWidget {
   //String descricao_pequena
 
 
-  cardProduto(this.email, this.password, this.id_user, this.id_produto, this.nome_produto, this.descricao_encurtada, this.foto_produto, this.is_owner);
+  cardProduto(this.email, this.password, this.username, this.id_user, this.id_produto, this.nome_produto, this.descricao_encurtada, this.foto_produto, this.is_owner);
 
   @override
   State<cardProduto> createState() => _cardProdutoState();
@@ -41,7 +42,7 @@ class _cardProdutoState extends State<cardProduto> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.id_produto, widget.id_user, widget.is_owner)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.username, widget.id_produto, widget.id_user, widget.is_owner)));
       },
       child: Card(
         margin: EdgeInsets.only(bottom: 10),
