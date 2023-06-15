@@ -12,6 +12,8 @@ import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
 import 'package:pi5vtr/card_produto.dart';
+import 'package:pi5vtr/meus_produtos.dart';
+import 'package:pi5vtr/produtos_empresa.dart';
 
 class Home extends StatefulWidget {
 
@@ -128,7 +130,7 @@ class _HomeState extends State<Home> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => MeusProdutos(widget.email, widget.password, widget.id_user, widget.username)));
                               },
                               child: Text(
                                   "Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -155,7 +157,7 @@ class _HomeState extends State<Home> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosEmpresa(widget.email, widget.password, widget.id_user, widget.username)));
                               },
                               child: Text(
                                   "Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -289,7 +291,7 @@ class _HomeState extends State<Home> {
                                     decoration: BoxDecoration(
                                       color: Color.fromRGBO(4, 18, 31, 1),
                                     ),
-                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "true")
+                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "true")
                                   );
                             },
                             childCount: snapshot.data!["meus_produtos"].length,
