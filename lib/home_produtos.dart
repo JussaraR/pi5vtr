@@ -403,7 +403,13 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(4, 18, 31, 1)
                 ),
-                child: Icon(Icons.dangerous_rounded, color: Colors.white, size: 50,),
+                child: Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(),
+                  )
+                ),
               );
 
 

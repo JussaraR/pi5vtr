@@ -430,26 +430,33 @@ class _ProdutoState extends State<Produto> {
 
 
                   } else {
-                    return SingleChildScrollView(
-                        child: Container(
-                            padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
-                            width: double.infinity,
-                            height: MediaQuery.of(context).size.height,
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(4, 18, 31, 1),
-                            )
-                        )
+                    // return SingleChildScrollView(
+                    //     child: Container(
+                    //         padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
+                    //         width: double.infinity,
+                    //         height: MediaQuery.of(context).size.height,
+                    //         decoration: BoxDecoration(
+                    //           color: Color.fromRGBO(4, 18, 31, 1),
+                    //         )
+                    //     )
+                    // );
+                    return Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(4, 18, 31, 1)
+                      ),
+                      child: Center(
+                          child: SizedBox(
+                            height: 40,
+                            width: 40,
+                            child: CircularProgressIndicator(),
+                          )
+                      ),
                     );
                   }
 
-                  // return Container(
-                  //   width: double.infinity,
-                  //   height: MediaQuery.of(context).size.height,
-                  //   decoration: BoxDecoration(
-                  //       color: Color.fromRGBO(4, 18, 31, 1)
-                  //   ),
-                  //   child: Icon(Icons.dangerous_rounded, color: Colors.white, size: 50,),
-                  // );
+
 
                 }
             )
@@ -978,15 +985,29 @@ class _ProdutoState extends State<Produto> {
 
 
                  } else {
-                   return SingleChildScrollView(
-                       child: Container(
-                        padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(4, 18, 31, 1),
-                        )
-                      )
+                   // return SingleChildScrollView(
+                   //     child: Container(
+                   //      padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
+                   //      width: double.infinity,
+                   //      height: MediaQuery.of(context).size.height,
+                   //      decoration: BoxDecoration(
+                   //        color: Color.fromRGBO(4, 18, 31, 1),
+                   //      )
+                   //    )
+                   // );
+                   return Container(
+                     width: double.infinity,
+                     height: MediaQuery.of(context).size.height,
+                     decoration: BoxDecoration(
+                         color: Color.fromRGBO(4, 18, 31, 1)
+                     ),
+                     child: Center(
+                         child: SizedBox(
+                           height: 40,
+                           width: 40,
+                           child: CircularProgressIndicator(),
+                         )
+                     ),
                    );
                  }
 
