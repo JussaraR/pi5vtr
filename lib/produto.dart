@@ -11,6 +11,9 @@ import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
 import 'package:pi5vtr/transferencia.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:pi5vtr/meus_produtos.dart';
+import 'package:pi5vtr/produtos_empresa.dart';
+
 
 class Produto extends StatefulWidget {
    String email;
@@ -125,7 +128,7 @@ class _ProdutoState extends State<Produto> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => MeusProdutos(widget.email, widget.password, widget.id_user, widget.username)));
                               },
                               child: Text(
                                   "Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -152,7 +155,7 @@ class _ProdutoState extends State<Produto> {
                             padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                             child: TextButton(
                               onPressed: (){
-                                //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosEmpresa(widget.email, widget.password, widget.id_user, widget.username)));
                               },
                               child: Text(
                                   "Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -216,11 +219,33 @@ class _ProdutoState extends State<Produto> {
                       )
                   ),
                 ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                    },
+                    child: Text(
+                      "Sair",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Arial',
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.fromLTRB(30, 7, 30, 7)
+                      ),
+                      backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
-
-
         appBar: AppBar(
           centerTitle: true,
           leading: Builder(builder: (BuildContext context){

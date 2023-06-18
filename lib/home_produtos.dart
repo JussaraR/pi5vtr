@@ -221,6 +221,30 @@ class _HomeState extends State<Home> {
                       )
                   ),
                 ),
+                Spacer(),
+                Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                    },
+                    child: Text(
+                      "Sair",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Arial',
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.fromLTRB(30, 7, 30, 7)
+                      ),
+                      backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

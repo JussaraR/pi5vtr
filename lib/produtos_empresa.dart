@@ -119,7 +119,7 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MeusProdutos(widget.email, widget.password, widget.id_user, widget.username)));
                             },
                             child: Text(
                                 "Meus Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -146,7 +146,7 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
                           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: TextButton(
                             onPressed: (){
-                              //Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosEmpresa(widget.email, widget.password, widget.id_user, widget.username)));
                             },
                             child: Text(
                                 "Produtos", style: TextStyle(fontSize: 20, color: Color.fromRGBO(189, 177, 51, 1))
@@ -210,6 +210,30 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
                     )
                 ),
               ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                  },
+                  child: Text(
+                    "Sair",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Arial',
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.fromLTRB(30, 7, 30, 7)
+                    ),
+                    backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
+                  ),
+                ),
+              )
             ],
           ),
         ),
