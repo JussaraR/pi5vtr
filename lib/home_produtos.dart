@@ -391,10 +391,7 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   );
-
-
                 }
-
               }
 
               return Container(
@@ -411,8 +408,6 @@ class _HomeState extends State<Home> {
                   )
                 ),
               );
-
-
             }
           )
       ),

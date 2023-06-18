@@ -874,31 +874,46 @@ class _ProdutoState extends State<Produto> {
                                     onSubmitted: (text) async {
                                       print(text);
 
-                                      Map<String, dynamic> data_comentario;
+                                      if(text == ""){
 
-                                      String url = "http://192.168.31.92:8080/comentario";
-                                      http.Response response;
+                                      } else {
+                                        Map<String, dynamic> data_comentario;
 
-                                      String comentario = text;
+                                        String url = "http://192.168.31.92:8080/comentario";
+                                        http.Response response;
 
-                                      Map<String, String> header = {
-                                        'Content-Type': 'application/json; charset=UTF-8',
-                                      };
+                                        String comentario = text;
 
-                                      response = await http.post(
-                                        url,
-                                        headers: header,
-                                        body: jsonEncode(<String, String>{
-                                          'email': widget.email,
-                                          'password': widget.password,
-                                          'id_user': widget.id_user,
-                                          'id_produto': widget.id_produto,
-                                          'comentario': comentario,
-                                          'username': widget.username
-                                        }),
-                                      );
+                                        snapshot.data!["comentarios"].insert(0, {
+                                          "Comentario": text,
+                                          "id_Usuarios": widget.id_user,
+                                          "id_Produtos": widget.id_produto,
+                                          "Nome": widget.username
+                                        });
 
-                                      data_comentario = json.decode(response.body);
+                                        Map<String, String> header = {
+                                          'Content-Type': 'application/json; charset=UTF-8',
+                                        };
+
+                                        response = await http.post(
+                                          url,
+                                          headers: header,
+                                          body: jsonEncode(<String, String>{
+                                            'email': widget.email,
+                                            'password': widget.password,
+                                            'id_user': widget.id_user,
+                                            'id_produto': widget.id_produto,
+                                            'comentario': comentario,
+                                            'username': widget.username
+                                          }),
+                                        );
+
+                                        //data_comentario = json.decode(response.body);
+
+
+                                      }
+
+
 
                                     },
                                     style: TextStyle(
@@ -932,7 +947,7 @@ class _ProdutoState extends State<Produto> {
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(8),
                                               side: BorderSide(
-                                                width: 1.5,
+                                                width: 1,
                                                 color: Color.fromRGBO(189, 177, 51, 1),
                                               ),
                                             ),
@@ -985,16 +1000,6 @@ class _ProdutoState extends State<Produto> {
 
 
                  } else {
-                   // return SingleChildScrollView(
-                   //     child: Container(
-                   //      padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
-                   //      width: double.infinity,
-                   //      height: MediaQuery.of(context).size.height,
-                   //      decoration: BoxDecoration(
-                   //        color: Color.fromRGBO(4, 18, 31, 1),
-                   //      )
-                   //    )
-                   // );
                    return Container(
                      width: double.infinity,
                      height: MediaQuery.of(context).size.height,
