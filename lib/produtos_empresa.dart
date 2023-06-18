@@ -281,70 +281,65 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
             color: Color.fromRGBO(4, 18, 31, 1.0),
           ),
           child: FutureBuilder<Map>(
-              future: produtosEmpresa(),
-              builder: (context, snapshot){
+            future: produtosEmpresa(),
+            builder: (context, snapshot){
 
-                if(snapshot.hasData){
+              if(snapshot.hasData){
 
-                  if(snapshot.data!["produtos"].length != 0){
-                    return CustomScrollView(
-                      slivers: [
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                              return Container(
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(4, 18, 31, 1),
-                                  ),
-                                  //child: Text("blabalbalbalbalbalba")
-                                  child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "true")
-                              );
-                            },
-                            childCount: snapshot.data!["produtos"].length,
+                if(snapshot.data!["produtos"].length != 0){
+                  return CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                              (BuildContext context, int index) {
+                            return Container(
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(4, 18, 31, 1),
+                                ),
+                                //child: Text("blabalbalbalbalbalba")
+                                child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"])
+                            );
+                          },
+                          childCount: snapshot.data!["produtos"].length,
+                        ),
+                      )
+                    ],
+                  );
+                } else if (snapshot.data!["produtos"].length == 0) {
+                  return Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(4, 18, 31, 1.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          "A VTR ainda não possui produtos!",
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: Color.fromRGBO(189, 177, 51, 1)
                           ),
                         )
                       ],
-                    );
-                  } else if (snapshot.data!["produtos"].length == 0) {
-                    return Container(
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(4, 18, 31, 1.0),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            "A loja ainda não possui produtos!",
-                            style: TextStyle(
-                                fontSize: 17,
-                                color: Color.fromRGBO(189, 177, 51, 1)
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  }
+                    ),
+                  );
                 }
-
-                return Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(4, 18, 31, 1)
-                  ),
-                  child: Icon(Icons.dangerous_rounded, color: Colors.white, size: 50,),
-                );
-
-
               }
+
+              return Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(4, 18, 31, 1)
+                ),
+                child: Icon(Icons.dangerous_rounded, color: Colors.white, size: 50,),
+              );
+            }
           ),
         ),
-
-
-
       ),
     );
   }

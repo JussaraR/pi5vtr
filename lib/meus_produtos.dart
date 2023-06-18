@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pi5vtr/fale_conosco.dart';
 import "dart:convert";
-import 'package:pi5vtr/manual.dart';
-import 'package:pi5vtr/garantia.dart';
 import 'package:pi5vtr/notificacoes.dart';
-import 'package:pi5vtr/produto.dart';
 import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
 import 'package:pi5vtr/card_produto.dart';
-import 'package:pi5vtr/meus_produtos.dart';
 import 'package:pi5vtr/produtos_empresa.dart';
 
 
@@ -340,7 +336,7 @@ class _MeusProdutosState extends State<MeusProdutos> {
                                       color: Color.fromRGBO(4, 18, 31, 1),
                                     ),
                                     //child: Text("blabalbalbalbalbalba")
-                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "true")
+                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"])
                                 );
                               },
                               childCount: snapshot.data!["meus_produtos"].length,

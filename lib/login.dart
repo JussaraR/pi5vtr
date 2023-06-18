@@ -114,17 +114,35 @@ class _LoginState extends State<Login> {
                                   border: OutlineInputBorder()
                               ),
                             ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 5)),
-                            Text(
-                              "Entrar sem uma conta",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: -0.5,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  color: Color.fromRGBO(189, 177, 51, 0.8)
+                            // Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 5)),
+                            TextButton(
+                              // style: TextButton.styleFrom(
+                              //   textStyle: const TextStyle(fontSize: 15),
+                              // ),
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home("", "", "", "")));
+                              },
+                              child: const Text(
+                                'Entrar sem uma conta',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: -0.5,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    color: Color.fromRGBO(189, 177, 51, 0.8)
+                                ),
                               ),
                             ),
+                            // Text(
+                            //   "Entrar sem uma conta",
+                            //   style: TextStyle(
+                            //       fontSize: 15,
+                            //       fontWeight: FontWeight.w400,
+                            //       letterSpacing: -0.5,
+                            //       decorationStyle: TextDecorationStyle.solid,
+                            //       color: Color.fromRGBO(189, 177, 51, 0.8)
+                            //   ),
+                            // ),
                             Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 30),),
 
                             ElevatedButton(
