@@ -273,21 +273,21 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
             );
           },),
 
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: IconButton(
-                icon: Icon(
-                    Icons.notifications,
-                    color: Color.fromRGBO(189, 177, 51, 1),
-                    size: 35
-                ),
-                onPressed: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.username, widget.id_user)));
-                },
-              ),
-            ),
-          ],
+          // actions: <Widget>[
+          //   Padding(
+          //     padding: EdgeInsets.only(right: 20.0),
+          //     child: IconButton(
+          //       icon: Icon(
+          //           Icons.notifications,
+          //           color: Color.fromRGBO(189, 177, 51, 1),
+          //           size: 35
+          //       ),
+          //       onPressed: () {
+          //         // Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.username, widget.id_user)));
+          //       },
+          //     ),
+          //   ),
+          // ],
 
           title: Text(
             "Produtos VTR",

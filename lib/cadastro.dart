@@ -90,7 +90,6 @@ class _CadastroState extends State<Cadastro> {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,
-                                letterSpacing: -0.5,
                                 color: Colors.red,
                               ),
                             ),
