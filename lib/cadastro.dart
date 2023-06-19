@@ -29,35 +29,62 @@ class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Teste",
+        title: "Cadastrar",
         home: Scaffold(
-          // appBar: ,
             body: SingleChildScrollView(
                 child: Column(
                     children: [
                       Container(
                         height: MediaQuery.of(context).size.height,
-                        padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(10, 40, 10, 20),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(4, 18, 31, 1.0),
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            // Image.asset(
-                            //   "images/vtr_logo.png",
-                            // ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 50, 0, 25),
-                              child: Text(
-                                "Criar Conta",
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(189, 177, 51, 1)
+                            Padding(padding: EdgeInsets.fromLTRB(0, 50, 0, 25),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: IconButton(
+                                    icon: Icon(
+                                        Icons.arrow_back,
+                                        color: Color.fromRGBO(189, 177, 51, 1),
+                                        size: 35
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                                    },
+                                  ),
                                 ),
-                              ),
+                                Text(
+                                    "Criar Conta",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromRGBO(189, 177, 51, 1)
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: IconButton(
+                                    icon: Icon(
+                                        Icons.arrow_back,
+                                        color: Color.fromRGBO(4, 18, 31, 1.0),
+                                        size: 35
+                                    ),
+                                    onPressed: () {
+
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
+
                             Text(
                                 mensagemErro,
                               style: TextStyle(
@@ -67,19 +94,20 @@ class _CadastroState extends State<Cadastro> {
                                 color: Colors.red,
                               ),
                             ),
+                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                             TextField(
                               controller: _usernameController,
                               style: TextStyle(
-                                color: Color.fromRGBO(189, 177, 51, 1),
+                                color: Color.fromRGBO(159, 159, 159, 1),
                               ),
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
                                   label: Text(
                                       "Username",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(189, 177, 51, 0.7),
+                                        color: Color.fromRGBO(159, 159, 159, 1),
                                       )
                                   ),
                                   border: OutlineInputBorder()
@@ -89,16 +117,16 @@ class _CadastroState extends State<Cadastro> {
                             TextField(
                               controller: _cpfCnpjController,
                               style: TextStyle(
-                                color: Color.fromRGBO(189, 177, 51, 1),
+                                color: Color.fromRGBO(159, 159, 159, 1),
                               ),
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
                                   label: Text(
                                       "CPF/CNPJ",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(189, 177, 51, 0.7),
+                                        color: Color.fromRGBO(159, 159, 159, 1),
                                       )
                                   ),
                                   border: OutlineInputBorder()
@@ -108,16 +136,16 @@ class _CadastroState extends State<Cadastro> {
                             TextField(
                               controller: _emailController,
                               style: TextStyle(
-                                color: Color.fromRGBO(189, 177, 51, 1),
+                                color: Color.fromRGBO(159, 159, 159, 1),
                               ),
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
                                   label: Text(
                                       "E-mail",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(189, 177, 51, 0.7),
+                                        color: Color.fromRGBO(159, 159, 159, 1),
                                       )
                                   ),
                                   border: OutlineInputBorder()
@@ -127,7 +155,7 @@ class _CadastroState extends State<Cadastro> {
                             TextField(
                               controller: _passwordController,
                               style: TextStyle(
-                                color: Color.fromRGBO(189, 177, 51, 1),
+                                color: Color.fromRGBO(159, 159, 159, 1),
                               ),
                               keyboardType: TextInputType.text,
                               obscureText: true,
@@ -137,12 +165,12 @@ class _CadastroState extends State<Cadastro> {
 
                               },
                               decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
                                   label: Text(
                                       "Senha",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(189, 177, 51, 0.7),
+                                        color: Color.fromRGBO(159, 159, 159, 1),
                                       )
                                   ),
                                   border: OutlineInputBorder()
@@ -153,7 +181,7 @@ class _CadastroState extends State<Cadastro> {
                               controller: _passwordConfirmController,
                               onChanged: (text){
                                 if(_passwordConfirmController.text != _passwordController.text){
-                                  erroCriarConta("Digite senhas iguas");
+                                  erroCriarConta("Digite senhas iguais");
                                 }else if (text.isEmpty){
                                   erroCriarConta("");
                                 }
@@ -162,87 +190,97 @@ class _CadastroState extends State<Cadastro> {
                                 }
                               },
                               style: TextStyle(
-                                color: Color.fromRGBO(189, 177, 51, 1),
+                                color: Color.fromRGBO(159, 159, 159, 1),
                               ),
                               keyboardType: TextInputType.text,
                               obscureText: true,
                               enableSuggestions: false,
                               autocorrect: false,
                               decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
                                   label: Text(
                                       "Confirmar Senha",
                                       style: TextStyle(
-                                        color: Color.fromRGBO(189, 177, 51, 0.7),
+                                        color: Color.fromRGBO(159, 159, 159, 1),
                                       )
                                   ),
                                   border: OutlineInputBorder()
                               ),
                             ),                            // Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 5)),
                             Padding(padding: EdgeInsets.fromLTRB(0, 18, 0, 18),),
+                            Spacer(),
+                            Container(
+                              child: Column(
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () async {
 
-                            ElevatedButton(
-                              onPressed: () async {
+                                      Map<String, dynamic> data_login;
 
-                                Map<String, dynamic> data_login;
+                                      // String url = "http://192.168.31.92:8080/criarconta";
+                                      String url = "https://8bbe-168-181-126-193.ngrok-free.app/criarconta";
+                                      http.Response response;
 
-                                String url = "http://192.168.31.92:8080/criarconta";
-                                http.Response response;
+                                      String email = _emailController.text;
+                                      String password = _passwordController.text;
+                                      String username = _usernameController.text;
+                                      String cpf_cnpj = _cpfCnpjController.text;
+                                      String data_nascimento = "";
 
-                                String email = _emailController.text;
-                                String password = _passwordController.text;
-                                String username = _usernameController.text;
-                                String cpf_cnpj = _cpfCnpjController.text;
-                                String data_nascimento = "";
+                                      if(_usernameController.text.isEmpty || _cpfCnpjController.text.isEmpty ||  _emailController.text.isEmpty || _passwordController.text.isEmpty || _passwordConfirmController.text.isEmpty){
+                                        erroCriarConta("Digite os dados da conta");
+                                      } else {
 
-                                if(_usernameController.text.isEmpty || _cpfCnpjController.text.isEmpty ||  _emailController.text.isEmpty || _passwordController.text.isEmpty || _passwordConfirmController.text.isEmpty){
-                                  erroCriarConta("Digite os dados da conta");
-                                } else {
+                                        Map<String, String> header = {
+                                          'Content-Type': 'application/json; charset=UTF-8',
+                                        };
 
-                                  Map<String, String> header = {
-                                    'Content-Type': 'application/json; charset=UTF-8',
-                                  };
+                                        response = await http.post(
+                                          url,
+                                          headers: header,
+                                          body: jsonEncode(<String, String>{
+                                            'email': email,
+                                            'password': password,
+                                            'data_nascimento': data_nascimento,
+                                            'nome': username,
+                                            'cpf_cnpj':  cpf_cnpj
+                                          }),
+                                        );
 
-                                  response = await http.post(
-                                    url,
-                                    headers: header,
-                                    body: jsonEncode(<String, String>{
-                                      'email': email,
-                                      'password': password,
-                                      'data_nascimento': data_nascimento,
-                                      'nome': username,
-                                      'cpf_cnpj':  cpf_cnpj
-                                    }),
-                                  );
+                                        data_login = json.decode(response.body);
+                                        print(data_login);
 
-                                  data_login = json.decode(response.body);
-                                  print(data_login);
-
-                                  if (data_login["status_code"] == 404){
-                                    erroCriarConta(data_login["message"]);
-                                  } else if (data_login["status_code"] == 200){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                                  }
-                                }
-                              },
-                              child: Text(
-                                "Criar",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Arial',
-                                ),
-                              ),
-                              style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.fromLTRB(30, 13, 30, 13)
-                                ),
-                                backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
+                                        if (data_login["status_code"] == 404){
+                                          erroCriarConta(data_login["message"]);
+                                        } else if (data_login["status_code"] == 200){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                                        }
+                                      }
+                                    },
+                                    child: Text(
+                                      "Criar",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'Arial',
+                                      ),
+                                    ),
+                                    style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.fromLTRB(30, 13, 30, 13)
+                                      ),
+                                      backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 8)),
+                                ],
                               ),
                             ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 8)),
+
+
+
                           ],
                         ),
                       ),

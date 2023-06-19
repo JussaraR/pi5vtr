@@ -50,7 +50,7 @@ class _cardProdutoState extends State<cardProduto> {
           borderRadius: BorderRadius.circular(8),
           side: BorderSide(
             width: 1.5,
-            color: Color.fromRGBO(189, 177, 51, 1),
+            color: Color.fromRGBO(92, 92, 92, 1),
           ),
         ),
         child: Padding(
@@ -75,7 +75,7 @@ class _cardProdutoState extends State<cardProduto> {
                 subtitle: Text(
                   widget.descricao_encurtada,
                   style: TextStyle(
-                      color: Color.fromRGBO(189, 177, 51, 1)
+                      color: Color.fromRGBO(159, 159, 159, 1),
                   ),
                 ),
               ),
