@@ -41,6 +41,7 @@ class _TransferenciaState extends State<Transferencia> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Transferência",
       home: Scaffold(
         drawer: Drawer(
@@ -357,9 +358,6 @@ class _TransferenciaState extends State<Transferencia> {
                       erroTransferencia(data_transfer["message"]);
                     }
                   }
-
-
-
                 },
                 child: Text(
                   "Transferir",

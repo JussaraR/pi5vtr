@@ -43,6 +43,7 @@ class _ResgatarProdState extends State<ResgatarProd> {
     // TELA RESGATAR PRODUTO OFFLINE
     if(widget.username ==  "" && widget.email ==  "" && widget.password ==  ""){
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Resgatar Produto",
         home: Scaffold(
             drawer: Drawer(
@@ -314,6 +315,7 @@ class _ResgatarProdState extends State<ResgatarProd> {
     // TELA DE RESGATAR PRODUTO LOGADO
     else {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Resgatar Produto",
         home: Scaffold(
           drawer: Drawer(
@@ -529,8 +531,6 @@ class _ResgatarProdState extends State<ResgatarProd> {
             backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
           ),
           body:
-          // SingleChildScrollView(
-          //   child:
             Container(
             height: MediaQuery.of(context).size.height,
             color: Color.fromRGBO(4, 18, 31, 1),
@@ -554,7 +554,7 @@ class _ResgatarProdState extends State<ResgatarProd> {
                     "Ao resgatar um produto adquirido, ele constará  como adquirido no aplicativo e sua garantia será vitalícia caso seja primeiro dono!",
                     style: TextStyle(
                       fontSize: 15,
-                      color: Color.fromRGBO(189, 177, 51, 1),
+                      color: Color.fromRGBO(159, 159, 159, 1),
                       // fontWeight: FontWeight.w500
                     ),
                   ),
@@ -582,16 +582,16 @@ class _ResgatarProdState extends State<ResgatarProd> {
                   child: TextField(
                     controller: _codigoProduto,
                     style: TextStyle(
-                      color: Color.fromRGBO(189, 177, 51, 1),
+                      color: Color.fromRGBO(159, 159, 159, 1),
                     ),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
-                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(189, 177, 51, 1))),
+                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
                         label: Text(
                             "Código do produto",
                             style: TextStyle(
-                              color: Color.fromRGBO(189, 177, 51, 1),
+                              color: Color.fromRGBO(159, 159, 159, 1),
                             )
                         ),
                         border: OutlineInputBorder()

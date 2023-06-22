@@ -1,18 +1,12 @@
 import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pi5vtr/fale_conosco.dart';
 import "dart:convert";
 import 'package:pi5vtr/manual.dart';
 import 'package:pi5vtr/garantia.dart';
-import 'package:pi5vtr/login.dart';
-import 'package:pi5vtr/home_produtos.dart';
-import 'package:pi5vtr/sobre.dart';
 import 'package:pi5vtr/transferencia.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:pi5vtr/meus_produtos.dart';
-import 'package:pi5vtr/produtos_empresa.dart';
-import 'package:pi5vtr/resgatar_produto.dart';
+import 'package:pi5vtr/drawer_geral.dart';
 
 class Produto extends StatefulWidget {
    String email;
@@ -30,7 +24,7 @@ class Produto extends StatefulWidget {
 class _ProdutoState extends State<Produto> {
 
 
-  Future<Map> productApi() async {
+  Future<Map> _productApi() async {
 
     Map<String, dynamic> data_product;
 
@@ -70,208 +64,10 @@ class _ProdutoState extends State<Produto> {
     // TELA DE PRODUTO OFFLINE
     if(widget.id_user == "" && widget.email == "" && widget.password == "" && widget.username == ""){
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Produto",
         home: Scaffold(
-            drawer: Drawer(
-              backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Padding(padding: EdgeInsets.fromLTRB(0, 40, 0, 15), child: Center(child: Text("Menu", style: TextStyle(fontWeight: FontWeight.w800,fontSize: 30, color: Color.fromRGBO(189, 177, 51, 1)),))),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                                    color: Color.fromRGBO(92, 92, 92, 1),
-                                    width: 1.5
-                                ),
-                                top: BorderSide(
-                                    color: Color.fromRGBO(92, 92, 92, 1),
-                                    width: 1.5
-                                )
-                            )
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: TextButton(
-                                onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
-                                },
-                                child: Text(
-                                    "Home", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                                ),
-                              )
-                          ),
-                        )
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                            )
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: TextButton(
-                                onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MeusProdutos(widget.email, widget.password, widget.id_user, widget.username)));
-                                },
-                                child: Text(
-                                    "Meus Produtos", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                                ),
-                              )
-                          ),
-                        )
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                            )
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: TextButton(
-                                onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosEmpresa(widget.email, widget.password, widget.id_user, widget.username)));
-                                },
-                                child: Text(
-                                    "Produtos", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                                ),
-                              )
-                          ),
-                        )
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                            )
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: TextButton(
-                                onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
-                                },
-                                child: Text(
-                                    "Sobre", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                                ),
-                              )
-                          ),
-                        )
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                            )
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: TextButton(
-                                onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
-                                },
-                                child: Text(
-                                    "Fale Conosco", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                                ),
-                              )
-                          ),
-                        )
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                            )
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                              child: TextButton(
-                                onPressed: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ResgatarProd(widget.email, widget.password, widget.username, widget.id_user)));
-                                },
-                                child: Text(
-                                    "Resgatar Produto", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                                ),
-                              )
-                          ),
-                        )
-                    ),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                      },
-                      child: Text(
-                        "Sair",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Arial',
-                        ),
-                      ),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.fromLTRB(30, 7, 30, 7)
-                        ),
-                        backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            drawer: drawerGeral(widget.email, widget.password, widget.id_user, widget.username),
             appBar: AppBar(
               centerTitle: true,
               leading: Builder(builder: (BuildContext context){
@@ -281,26 +77,12 @@ class _ProdutoState extends State<Produto> {
                     Scaffold.of(context).openDrawer();
                   },
                 );
-              },),
-
-              actions: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(right: 20.0),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Icon(
-                          Icons.notifications,
-                          color: Color.fromRGBO(189, 177, 51, 1),
-                          size: 35
-                      ),
-                    )
-                ),
-              ],
+              }),
               backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
 
             ),
             body: FutureBuilder<Map>(
-                future: productApi(),
+                future: _productApi(),
                 builder: (context, snapshot) {
 
                   if (snapshot.hasData) {
@@ -362,7 +144,8 @@ class _ProdutoState extends State<Produto> {
                                 alignment: Alignment.topLeft,
                                 child: Container(
                                   child: Image.asset(
-                                      "images/"+snapshot.data!["produto"]["img1"]
+                                      "images/"+snapshot.data!["produto"]["img1"],
+                                    width: 200,
                                   ),
                                 ),
                               ),
@@ -464,217 +247,15 @@ class _ProdutoState extends State<Produto> {
                   }
                 }
             )
-
-
-
-
         ),
       );
     }
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Produto",
       home: Scaffold(
-          drawer: Drawer(
-            backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Padding(padding: EdgeInsets.fromLTRB(0, 40, 0, 15), child: Center(child: Text("Menu", style: TextStyle(fontWeight: FontWeight.w800,fontSize: 30, color: Color.fromRGBO(189, 177, 51, 1)),))),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                              top: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              )
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
-                              },
-                              child: Text(
-                                  "Home", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => MeusProdutos(widget.email, widget.password, widget.id_user, widget.username)));
-                              },
-                              child: Text(
-                                  "Meus Produtos", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosEmpresa(widget.email, widget.password, widget.id_user, widget.username)));
-                              },
-                              child: Text(
-                                  "Produtos", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
-                              },
-                              child: Text(
-                                  "Sobre", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
-                              },
-                              child: Text(
-                                  "Fale Conosco", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ResgatarProd(widget.email, widget.password, widget.username, widget.id_user)));
-                              },
-                              child: Text(
-                                  "Resgatar Produto", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                    },
-                    child: Text(
-                      "Sair",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Arial',
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.fromLTRB(30, 7, 30, 7)
-                      ),
-                      backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+          drawer: drawerGeral(widget.email, widget.password, widget.id_user, widget.username),
         appBar: AppBar(
           centerTitle: true,
           leading: Builder(builder: (BuildContext context){
@@ -685,25 +266,11 @@ class _ProdutoState extends State<Produto> {
               },
             );
           },),
-
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.notifications,
-                      color: Color.fromRGBO(189, 177, 51, 1),
-                      size: 35
-                  ),
-                )
-            ),
-          ],
           backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
 
         ),
           body: FutureBuilder<Map>(
-              future: productApi(),
+              future: _productApi(),
               builder: (context, snapshot) {
 
                  if (snapshot.hasData) {
@@ -765,10 +332,11 @@ class _ProdutoState extends State<Produto> {
                                Padding(padding: EdgeInsets.fromLTRB(0, 6, 0, 6)),
 
                                Align(
-                                 alignment: Alignment.topLeft,
+                                 alignment: Alignment.center,
                                  child: Container(
                                    child: Image.asset(
-                                       "images/"+snapshot.data!["produto"]["img1"]
+                                       "images/"+snapshot.data!["produto"]["img1"],
+                                     width: 100,
                                    ),
                                  ),
                                ),
@@ -848,7 +416,7 @@ class _ProdutoState extends State<Produto> {
                                          } else {
                                            Map<String, dynamic> data_comentario;
 
-                                           String url = "http://192.168.31.92:8080/comentario";
+                                           String url = "https://c513-168-181-126-193.ngrok-free.app/comentario";
                                            http.Response response;
 
                                            String comentario = text;
@@ -1014,10 +582,11 @@ class _ProdutoState extends State<Produto> {
                                ),
                                Padding(padding: EdgeInsets.fromLTRB(0, 6, 0, 6)),
                                Align(
-                                 alignment: Alignment.topLeft,
+                                 alignment: Alignment.center,
                                  child: Container(
                                    child: Image.asset(
-                                       "images/"+snapshot.data!["produto"]["img1"]
+                                       "images/"+snapshot.data!["produto"]["img1"],
+                                     width: 200,
                                    ),
                                  ),
                                ),

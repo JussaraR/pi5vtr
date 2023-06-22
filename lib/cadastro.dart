@@ -29,6 +29,7 @@ class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Cadastrar",
         home: Scaffold(
             body: SingleChildScrollView(
@@ -217,8 +218,8 @@ class _CadastroState extends State<Cadastro> {
 
                                       Map<String, dynamic> data_login;
 
-                                      // String url = "http://192.168.31.92:8080/criarconta";
-                                      String url = "https://8bbe-168-181-126-193.ngrok-free.app/criarconta";
+                                      String url = "http://192.168.31.92:8080/criarconta";
+                                      // String url = "https://69c4-168-181-126-193.ngrok-free.app/criarconta";
                                       http.Response response;
 
                                       String email = _emailController.text;

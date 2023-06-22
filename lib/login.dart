@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
 import 'package:pi5vtr/cadastro.dart';
-
+import 'package:pi5vtr/url_api.dart';
 
 class telaLogin extends StatelessWidget {
 
@@ -36,7 +36,8 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Teste",
+        debugShowCheckedModeBanner: false,
+        title: "Login",
         home: Scaffold(
             body: SingleChildScrollView(
                 child: Column(
@@ -148,7 +149,7 @@ class _LoginState extends State<Login> {
 
                                         Map<String, dynamic> data_login;
 
-                                        String url = "http://192.168.31.92:8080/login";
+                                        String url = urlApi().urlEndpoint()+"/login";
                                         // String url = "https://8bbe-168-181-126-193.ngrok-free.app/login";
 
                                         http.Response response;
