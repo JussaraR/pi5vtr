@@ -1,8 +1,10 @@
-import 'package:pi5vtr/home_produtos.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
 import 'package:pi5vtr/login.dart';
+import 'package:pi5vtr/url_api.dart';
+
+
 
 class Cadastro extends StatefulWidget {
 
@@ -44,172 +46,187 @@ class _CadastroState extends State<Cadastro> {
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(padding: EdgeInsets.fromLTRB(0, 50, 0, 25),),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: IconButton(
-                                    icon: Icon(
-                                        Icons.arrow_back,
-                                        color: Color.fromRGBO(189, 177, 51, 1),
-                                        size: 35
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                                    },
+                            Container(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                            Icons.arrow_back,
+                                            color: Color.fromRGBO(189, 177, 51, 1),
+                                            size: 35
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context, rootNavigator: true).pop(context);
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                Text(
-                                    "Criar Conta",
-                                  style: TextStyle(
-                                      fontSize: 30,
+                                  // Padding(padding: EdgeInsets.fromLTRB(0, 50, 0, 25),),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      Text(
+                                        "Criar Conta",
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color.fromRGBO(189, 177, 51, 1)
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+
+
+
+
+
+                            Container(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    mensagemErro,
+                                    style: TextStyle(
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(189, 177, 51, 1)
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: IconButton(
-                                    icon: Icon(
-                                        Icons.arrow_back,
-                                        color: Color.fromRGBO(4, 18, 31, 1.0),
-                                        size: 35
+                                      color: Colors.red,
                                     ),
-                                    onPressed: () {
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                                  TextField(
+                                    controller: _usernameController,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        label: Text(
+                                            "Username",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                  TextField(
+                                    controller: _cpfCnpjController,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        label: Text(
+                                            "CPF/CNPJ",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                  TextField(
+                                    controller: _emailController,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        label: Text(
+                                            "E-mail",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                  TextField(
+                                    controller: _passwordController,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    obscureText: true,
+                                    enableSuggestions: false,
+                                    autocorrect: false,
+                                    onChanged: (text){
 
                                     },
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        label: Text(
+                                            "Senha",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                  TextField(
+                                    controller: _passwordConfirmController,
+                                    onChanged: (text){
+                                      if(_passwordConfirmController.text != _passwordController.text){
+                                        erroCriarConta("Digite senhas iguais");
+                                      }else if (text.isEmpty){
+                                        erroCriarConta("");
+                                      }
+                                      else {
+                                        erroCriarConta("");
+                                      }
+                                    },
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    obscureText: true,
+                                    enableSuggestions: false,
+                                    autocorrect: false,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
+                                        label: Text(
+                                            "Confirmar Senha",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),                            // Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 5)),
+                                ],
+                              ),
                             ),
 
-                            Text(
-                                mensagemErro,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.red,
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                            TextField(
-                              controller: _usernameController,
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  label: Text(
-                                      "Username",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                            TextField(
-                              controller: _cpfCnpjController,
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  label: Text(
-                                      "CPF/CNPJ",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                            TextField(
-                              controller: _emailController,
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  label: Text(
-                                      "E-mail",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                            TextField(
-                              controller: _passwordController,
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.text,
-                              obscureText: true,
-                              enableSuggestions: false,
-                              autocorrect: false,
-                              onChanged: (text){
 
-                              },
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  label: Text(
-                                      "Senha",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                            TextField(
-                              controller: _passwordConfirmController,
-                              onChanged: (text){
-                                if(_passwordConfirmController.text != _passwordController.text){
-                                  erroCriarConta("Digite senhas iguais");
-                                }else if (text.isEmpty){
-                                  erroCriarConta("");
-                                }
-                                else {
-                                  erroCriarConta("");
-                                }
-                              },
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.text,
-                              obscureText: true,
-                              enableSuggestions: false,
-                              autocorrect: false,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1))),
-                                  label: Text(
-                                      "Confirmar Senha",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),                            // Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 5)),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 18, 0, 18),),
-                            Spacer(),
+
+
+
+                            // Spacer(),
+
+
+
+
+
                             Container(
                               child: Column(
                                 children: [
@@ -218,7 +235,7 @@ class _CadastroState extends State<Cadastro> {
 
                                       Map<String, dynamic> data_login;
 
-                                      String url = "http://192.168.31.92:8080/criarconta";
+                                      String url = urlApi().urlEndpoint()+"/criarconta";
                                       // String url = "https://69c4-168-181-126-193.ngrok-free.app/criarconta";
                                       http.Response response;
 

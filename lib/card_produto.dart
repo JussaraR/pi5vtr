@@ -1,15 +1,6 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:pi5vtr/fale_conosco.dart';
-import "dart:convert";
-import 'package:pi5vtr/manual.dart';
-import 'package:pi5vtr/garantia.dart';
 import 'package:pi5vtr/produto.dart';
-import 'package:pi5vtr/login.dart';
-import 'package:pi5vtr/home_produtos.dart';
-import 'package:pi5vtr/sobre.dart';
 
 
 class cardProduto extends StatefulWidget {
@@ -18,19 +9,15 @@ class cardProduto extends StatefulWidget {
   String email;
   String password;
   String username;
-
-  //usados para consulta na pagina de produto
   String id_user;
   String id_produto;
-
-  //usados para construir o card
   String nome_produto;
   String descricao_encurtada;
   String foto_produto;
-  //String descricao_pequena
+  String were_from;
 
 
-  cardProduto(this.email, this.password, this.username, this.id_user, this.id_produto, this.nome_produto, this.descricao_encurtada, this.foto_produto);
+  cardProduto(this.email, this.password, this.username, this.id_user, this.id_produto, this.nome_produto, this.descricao_encurtada, this.foto_produto, this.were_from);
 
   @override
   State<cardProduto> createState() => _cardProdutoState();
@@ -41,7 +28,7 @@ class _cardProdutoState extends State<cardProduto> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.username, widget.id_produto, widget.id_user)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.username, widget.id_produto, widget.id_user, widget.were_from)));
       },
       child: Card(
         margin: EdgeInsets.only(bottom: 10),
@@ -59,7 +46,9 @@ class _cardProdutoState extends State<cardProduto> {
             children: <Widget>[
               ListTile(
                 leading: Image.asset(
-                    widget.foto_produto
+                    widget.foto_produto,
+                  width: 55,
+                  // height: 70,
                 ),
                 title: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 23),
@@ -73,7 +62,7 @@ class _cardProdutoState extends State<cardProduto> {
                   ),
                 ),
                 subtitle: Text(
-                  widget.descricao_encurtada,
+                  widget.descricao_encurtada.length > 80 ? '${widget.descricao_encurtada.substring(0, 80)}...' : widget.descricao_encurtada,
                   style: TextStyle(
                       color: Color.fromRGBO(159, 159, 159, 1),
                   ),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pi5vtr/drawer_geral.dart';
+import 'package:pi5vtr/home_produtos.dart';
+
+
 
 class FaleConosco extends StatefulWidget {
-  //const FaleConosco({Key? key}) : super(key: key);
 
   String email;
   String password;
@@ -38,6 +40,7 @@ class _FaleConoscoState extends State<FaleConosco> {
           title: Text(
             "Fale Conosco",
             style: TextStyle(
+                fontSize: 25,
                 color: Color.fromRGBO(189, 177, 51, 1)
             ),
           ),
@@ -45,11 +48,25 @@ class _FaleConoscoState extends State<FaleConosco> {
 
         ),
         body: Container(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           color: Color.fromRGBO(4, 18, 31, 1),
           child: Column(
             children: [
-
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                        Icons.arrow_back,
+                        color: Color.fromRGBO(189, 177, 51, 1),
+                        size: 35
+                    ),
+                    onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
+                    },
+                  ),
+                ],
+              ),
+              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
               GestureDetector(
                 child: Card(
                   margin: EdgeInsets.only(bottom: 10),
@@ -141,9 +158,9 @@ class _FaleConoscoState extends State<FaleConosco> {
                       children: [
                         ListTile(
                           // FOTO
-                          leading: Icon(FontAwesomeIcons.facebook, color: Colors.blueAccent, size: 40,),
+                          leading: Icon(FontAwesomeIcons.linkedin, color: Colors.blueAccent, size: 40,),
                           title: Text(
-                            "Facebook",
+                            "Linkedin",
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
@@ -156,7 +173,7 @@ class _FaleConoscoState extends State<FaleConosco> {
                   ),
                 ),
                 onTap: () async {
-                  final Uri url = Uri.parse("https://www.facebook.com/vtreffects");
+                  final Uri url = Uri.parse("https://www.linkedin.com/company/vtr-effects/");
                   await launchUrl(url);
                 },
               ),

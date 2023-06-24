@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pi5vtr/drawer_geral.dart';
+import 'package:pi5vtr/home_produtos.dart';
+
+
 
 class SobreEmpresa extends StatefulWidget {
 
@@ -19,7 +22,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Teste",
+      title: "Sobre",
       home: Scaffold(
         drawer: drawerGeral(widget.email, widget.password, widget.id_user, widget.username),
         appBar: AppBar(
@@ -35,6 +38,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
           title: Text(
             "Nossa História",
             style: TextStyle(
+              fontSize: 25,
               color: Color.fromRGBO(189, 177, 51, 1),
             ),
           ),
@@ -43,14 +47,28 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.fromLTRB(8, 10, 8, 0),
+            padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
             color: Color.fromRGBO(4, 18, 31, 1),
             child: Column(
               children: [
-                Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 20)),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                          Icons.arrow_back,
+                          color: Color.fromRGBO(189, 177, 51, 1),
+                          size: 35
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
+                      },
+                    ),
+                  ],
+                ),
+                Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                 Image.asset(
                   "images/vtr_logo.png",
-                  width: 500,
+                  width: 180,
                   height: 300,
                 ),
                 Row(
@@ -60,7 +78,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                          fontSize: 23,
+                          fontSize: 20,
                           color: Color.fromRGBO(189, 177, 51, 1)
                       ),
                     ),
@@ -86,7 +104,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 23,
+                          fontSize: 20,
                           color: Color.fromRGBO(189, 177, 51, 1)
                       ),
                     ),
@@ -112,7 +130,7 @@ class _SobreEmpresaState extends State<SobreEmpresa> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 23,
+                          fontSize: 20,
                           color: Color.fromRGBO(189, 177, 51, 1)
                       ),
                     ),

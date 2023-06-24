@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
 import 'package:pi5vtr/drawer_geral.dart';
+import 'package:pi5vtr/url_api.dart';
+import 'package:pi5vtr/produto.dart';
 
 
 class Garantia extends StatefulWidget {
@@ -11,8 +13,9 @@ class Garantia extends StatefulWidget {
   String username;
   String id_produto;
   String id_user;
+  String were_from;
 
-  Garantia(this.email, this.password, this.username, this.id_user, this.id_produto);
+  Garantia(this.email, this.password, this.username, this.id_user, this.id_produto, this.were_from);
 
   @override
   State<Garantia> createState() => _GarantiaState();
@@ -25,7 +28,7 @@ class _GarantiaState extends State<Garantia> {
 
     Map<String, dynamic> data_garantia;
 
-    String url = "http://192.168.31.92:8080/garantia";
+    String url = urlApi().urlEndpoint()+"/garantia";
     http.Response response;
 
     String id_user = widget.id_user;
@@ -74,6 +77,7 @@ class _GarantiaState extends State<Garantia> {
           title: Text(
             "Garantia",
             style: TextStyle(
+                fontSize: 25,
                 color: Color.fromRGBO(189, 177, 51, 1)
             ),
           ),
@@ -81,13 +85,29 @@ class _GarantiaState extends State<Garantia> {
 
         ),
         body: Container(
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           color: Color.fromRGBO(4, 18, 31, 1),
           child: Column(
             children: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                        Icons.arrow_back,
+                        color: Color.fromRGBO(189, 177, 51, 1),
+                        size: 35
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Produto(widget.email, widget.password, widget.username, widget.id_produto, widget.id_user, widget.were_from)));
+                    },
+                  ),
+                ],
+              ),
+
               Text(
                   "A garantia dos produtos VTR Effects é vitalícia para o primeiro dono, sendo válida para os próximos donos do mesmo produto estando dentro do período de 1 ano da data da compra.",
                 style: TextStyle(
-                    color: Color.fromRGBO(189, 177, 51, 1)
+                    color: Color.fromRGBO(159, 159, 159, 1),
                 ),
               ),
               Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 8)),
@@ -102,7 +122,8 @@ class _GarantiaState extends State<Garantia> {
                       Text(
                         snapshot.data!["message"],
                         style: TextStyle(
-                            color: Color.fromRGBO(189, 177, 51, 1)
+                          fontWeight: FontWeight.w900,
+                            color: Color.fromRGBO(159, 159, 159, 1),
                         ),
                       ),
                       Text(

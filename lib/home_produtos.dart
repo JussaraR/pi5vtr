@@ -1,11 +1,13 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
 import 'package:pi5vtr/notificacoes.dart';
 import 'package:pi5vtr/card_produto.dart';
 import 'package:pi5vtr/drawer_geral.dart';
+import 'package:pi5vtr/url_api.dart';
+
+
 
 class Home extends StatefulWidget {
 
@@ -29,7 +31,7 @@ class _HomeState extends State<Home> {
 
     Map<String, dynamic> data_home;
 
-    String url = "http://192.168.31.92:8080/home";
+    String url = urlApi().urlEndpoint()+"/home";
     http.Response response;
 
     String id_user = widget.id_user;
@@ -79,7 +81,6 @@ class _HomeState extends State<Home> {
                       },
                     );
                   }),
-
                   actions: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(right: 20.0),
@@ -90,12 +91,11 @@ class _HomeState extends State<Home> {
                             size: 35
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.username, widget.id_user, [])));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Notificacoes(widget.email, widget.password, widget.username, widget.id_user)));
                         },
                       ),
                     ),
                   ],
-
                   title: Text(
                     "Home",
                     style: TextStyle(
@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
                                             decoration: BoxDecoration(
                                               color: Color.fromRGBO(4, 18, 31, 1),
                                             ),
-                                            child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"])
+                                            child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "home")
                                         );
                                       },
                                       childCount: snapshot.data!["meus_produtos"].length,
@@ -170,7 +170,7 @@ class _HomeState extends State<Home> {
                                             decoration: BoxDecoration(
                                               color: Color.fromRGBO(4, 18, 31, 1),
                                             ),
-                                            child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"])
+                                            child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "home")
                                         );
                                       },
                                       childCount: snapshot.data!["produtos"].length,
@@ -180,7 +180,8 @@ class _HomeState extends State<Home> {
                               )
                           );
 
-                        } else if(snapshot.data!["meus_produtos"].length == 0){
+                        }
+                        else if(snapshot.data!["meus_produtos"].length == 0){
 
                           return Container(
                             padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -212,7 +213,7 @@ class _HomeState extends State<Home> {
                                           decoration: BoxDecoration(
                                             color: Color.fromRGBO(4, 18, 31, 1),
                                           ),
-                                          child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"])
+                                          child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "home")
                                       );
                                     },
                                     childCount: snapshot.data!["produtos"].length,
@@ -222,22 +223,26 @@ class _HomeState extends State<Home> {
                             ),
                           );
                         }
+
                       }
 
                       return Container(
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height,
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(4, 18, 31, 1)
-                        ),
-                        child: Center(
-                            child: SizedBox(
-                              height: 40,
-                              width: 40,
-                              child: CircularProgressIndicator(),
-                            )
-                        ),
-                      );
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height,
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(4, 18, 31, 1)
+                          ),
+                          child: Center(
+                              child: SizedBox(
+                                height: 40,
+                                width: 40,
+                                child: CircularProgressIndicator(),
+                              )
+                          ),
+                        );
+
+
+
                     }
                 )
             ),

@@ -41,6 +41,7 @@ dependencies:
   flutter_native_splash:
   font_awesome_flutter:
   flutter_launcher_icons:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:
@@ -65,12 +66,14 @@ flutter:
   uses-material-design: true
   assets:
     - images/vtr_logo.png
+    - images/vtr_logo_splash.png
     - images/pedal_azul1.CR2
     - images/pedal_azul2.jpg
     - images/pedal_azul3.jpg
     - images/pedal_branco1.jpg
     - images/pedal_branco2.png
     - images/pedal_branco3.jpg
+    - images/pedal_branco4.jpg
     - images/pedal_branco5.jpg
     - images/italo.jpg
     - images/Kailani_reverb1.png
@@ -87,11 +90,11 @@ flutter:
 
 flutter_native_splash:
   color: "#04121F"
-  image: images/vtr_logo.png
+  image: images/vtr_logo_splash.png
   fullscreen: true
   android_12:
     color: "#04121F"
-    image: images/vtr_logo.png
+    image: images/vtr_logo_splash.png
 
 flutter_icons:
   android: "launcher_icon"

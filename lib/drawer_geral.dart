@@ -1,17 +1,9 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:pi5vtr/fale_conosco.dart';
-import "dart:convert";
-import 'package:pi5vtr/manual.dart';
-import 'package:pi5vtr/garantia.dart';
-import 'package:pi5vtr/notificacoes.dart';
-import 'package:pi5vtr/produto.dart';
 import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/home_produtos.dart';
 import 'package:pi5vtr/sobre.dart';
-import 'package:pi5vtr/card_produto.dart';
 import 'package:pi5vtr/meus_produtos.dart';
 import 'package:pi5vtr/produtos_empresa.dart';
 import 'package:pi5vtr/resgatar_produto.dart';
@@ -29,7 +21,8 @@ class drawerGeral extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return
+    Drawer(
       backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
       child: Column(
         children: [
@@ -207,7 +200,7 @@ class drawerGeral extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
             child: ElevatedButton(
               onPressed: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                Navigator.of(context, rootNavigator: true).pop(context);
               },
               child: Text(
                 "Sair",

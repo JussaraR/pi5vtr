@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pi5vtr/fale_conosco.dart';
 import 'package:pi5vtr/login.dart';
-import 'package:pi5vtr/home_produtos.dart';
-import 'package:pi5vtr/sobre.dart';
-import 'package:pi5vtr/meus_produtos.dart';
-import 'package:pi5vtr/produtos_empresa.dart';
-import 'package:pi5vtr/resgatar_produto.dart';
 import 'package:pi5vtr/drawer_geral.dart';
+import 'package:pi5vtr/url_api.dart';
+import 'package:http/http.dart' as http;
+import "dart:convert";
+import 'package:pi5vtr/home_produtos.dart';
+
 
 class Notificacoes extends StatefulWidget {
 
@@ -15,9 +14,8 @@ class Notificacoes extends StatefulWidget {
   String password;
   String username;
   String id_user;
-  List notificacoes;
 
-  Notificacoes(this.email, this.password, this.username, this.id_user, this.notificacoes);
+  Notificacoes(this.email, this.password, this.username, this.id_user);
 
   @override
   State<Notificacoes> createState() => _NotificacoesState();
@@ -26,6 +24,38 @@ class Notificacoes extends StatefulWidget {
 
 
 class _NotificacoesState extends State<Notificacoes> {
+
+  Future<Map> _notificacoes() async {
+
+    Map<String, dynamic> data_notificacao;
+
+    String url = urlApi().urlEndpoint()+"/notificacoes";
+    http.Response response;
+
+    String id_user = widget.id_user;
+    String email = widget.email;
+    String password = widget.password;
+
+    Map<String, String> header = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+
+    response = await http.post(
+      url,
+      headers: header,
+      body: jsonEncode(<String, dynamic>{
+        'email': email,
+        'password': password,
+        'id_user': id_user
+      }),
+    );
+
+    data_notificacao = json.decode(response.body);
+
+    return data_notificacao;
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -107,206 +137,7 @@ class _NotificacoesState extends State<Notificacoes> {
     return MaterialApp(
       title: "Teste",
       home: Scaffold(
-          drawer: Drawer(
-            backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Padding(padding: EdgeInsets.fromLTRB(0, 40, 0, 15), child: Center(child: Text("Menu", style: TextStyle(fontWeight: FontWeight.w800,fontSize: 30, color: Color.fromRGBO(189, 177, 51, 1)),))),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              ),
-                              top: BorderSide(
-                                  color: Color.fromRGBO(92, 92, 92, 1),
-                                  width: 1.5
-                              )
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
-                              },
-                              child: Text(
-                                  "Home", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => MeusProdutos(widget.email, widget.password, widget.id_user, widget.username)));
-                              },
-                              child: Text(
-                                  "Meus Produtos", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosEmpresa(widget.email, widget.password, widget.id_user, widget.username)));
-                              },
-                              child: Text(
-                                  "Produtos", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => SobreEmpresa(widget.email, widget.password, widget.username, widget.id_user)));
-                              },
-                              child: Text(
-                                  "Sobre", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => FaleConosco(widget.email, widget.password, widget.username, widget.id_user)));
-                              },
-                              child: Text(
-                                  "Fale Conosco", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Color.fromRGBO(92, 92, 92, 1),
-                                width: 1.5
-                            ),
-                          )
-                      ),
-                      child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ResgatarProd(widget.email, widget.password, widget.username, widget.id_user)));
-                              },
-                              child: Text(
-                                  "Resgatar Produto", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Color.fromRGBO(189, 177, 51, 1))
-                              ),
-                            )
-                        ),
-                      )
-                  ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                    },
-                    child: Text(
-                      "Sair",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Arial',
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.fromLTRB(30, 7, 30, 7)
-                      ),
-                      backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(189, 177, 51, 1)),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+          drawer: drawerGeral(widget.email, widget.password, widget.id_user, widget.username),
         appBar: AppBar(
           centerTitle: true,
           leading: Builder(builder: (BuildContext context){
@@ -320,90 +151,116 @@ class _NotificacoesState extends State<Notificacoes> {
           title: Text(
             "Notificações",
             style: TextStyle(
-                color: Color.fromRGBO(189, 177, 51, 1)
+                color: Color.fromRGBO(189, 177, 51, 1),
+              fontSize: 25,
             ),
           ),
           backgroundColor: Color.fromRGBO(4, 18, 31, 1.0),
 
         ),
         body: Container(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
           decoration: BoxDecoration(
             color: Color.fromRGBO(4, 18, 31, 1.0),
           ),
         child:
-          CustomScrollView(
-              slivers: [
-              SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                      return Card(
-                        margin: EdgeInsets.only(bottom: 10),
-                        color: Color.fromRGBO(4, 18, 31, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          side: BorderSide(
-                            width: 1.5,
-                            color: Color.fromRGBO(92, 92, 92, 1),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                          child: Column(
-                            children: <Widget>[
-                              ListTile(
-                                title: Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                  child: Text(
-                                    widget.notificacoes[index]["titulo_notificacao"],
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w700,
-                                        color: Color.fromRGBO(189, 177, 51, 1)
-                                    ),
-                                  ),
+        FutureBuilder<Map>(
+          future: _notificacoes(),
+          builder: (context, snapshot){
+
+          if(snapshot.hasData){
+            return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                    Icons.arrow_back,
+                                    color: Color.fromRGBO(189, 177, 51, 1),
+                                    size: 35
                                 ),
-                                subtitle: Text(
-                                  widget.notificacoes[index]["texto_notificacao"],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(159, 159, 159, 1),
-                                  ),
-                                ),
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home(widget.email, widget.password, widget.id_user, widget.username)));
+                                },
                               ),
                             ],
                           ),
                         ),
-                      );
-                    },
-                    childCount: widget.notificacoes.length,
+                        Padding(padding: EdgeInsets.fromLTRB(5, 5, 5, 5))
+                      ],
+                    )
                   ),
-                ),
-            ]
-          )
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                        return Card(
+                          margin: EdgeInsets.only(bottom: 10),
+                          color: Color.fromRGBO(4, 18, 31, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: BorderSide(
+                              width: 1.5,
+                              color: Color.fromRGBO(92, 92, 92, 1),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Column(
+                              children: <Widget>[
+
+                                ListTile(
+                                  title: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                    child: Text(
+                                      snapshot.data!["notificacoes"][index]["titulo_notificacao"],
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color.fromRGBO(189, 177, 51, 1)
+                                      ),
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                    snapshot.data!["notificacoes"][index]["texto_notificacao"],
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      childCount: snapshot.data!["notificacoes"].length,
+                    ),
+                  ),
+                ]
+            );
+          } else {
+            return Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(4, 18, 31, 1)
+              ),
+              child: Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(),
+                  )
+              ),
+            );
+          }
+
+
+        }),
         )
-
-
-        // Container(
-        //   padding: EdgeInsets.fromLTRB(13, 15, 13, 0),
-        //   width: double.infinity,
-        //   height: MediaQuery.of(context).size.height,
-        //   decoration: BoxDecoration(
-        //     //border: Border.all(width: 3, color: Color.fromRGBO(189, 177, 51, 1)),
-        //     color: Color.fromRGBO(4, 18, 31, 1),
-        //   ),
-        //   child: Center(
-        //     child: ListView(
-        //         children: [
-        //           Text(
-        //               "data",
-        //               style: TextStyle(
-        //                   color: Color.fromRGBO(189, 177, 51, 1)
-        //             ),
-        //           )
-        //         ],
-        //       ),
-        //     )
-        // )
       ),
     );
   }

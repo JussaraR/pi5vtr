@@ -50,89 +50,117 @@ class _LoginState extends State<Login> {
                         ),
                         child: Column(
                           // mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "VTR Effects",
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(189, 177, 51, 1)
-                              ),
-                            ),
-                            Image.asset(
-                              "images/vtr_logo.png",
-                            ),
-                            Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                              child: Text(
-                                mensagemErro,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: -0.5,
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                            TextField(
-                              controller: _emailController,
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
-                                  label: Text(
-                                      "Email",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                            TextField(
-                              controller: _passwordController,
-                              style: TextStyle(
-                                color: Color.fromRGBO(159, 159, 159, 1),
-                              ),
-                              keyboardType: TextInputType.text,
-                              obscureText: true,
-                              enableSuggestions: false,
-                              autocorrect: false,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
-                                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
-                                  label: Text(
-                                      "Senha",
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(159, 159, 159, 1),
-                                      )
-                                  ),
-                                  border: OutlineInputBorder()
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10),),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Home("", "", "", "")));
-                              },
-                              child: const Text(
-                                'Entrar sem uma conta',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: -0.5,
-                                    decorationStyle: TextDecorationStyle.solid,
-                                    color: Color.fromRGBO(189, 177, 51, 0.8)
-                                ),
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),),
 
-                            Spacer(),
+                            Container(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "VTR Effects",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(189, 177, 51, 1)
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 35)),
+                                  Image.asset(
+                                    "images/vtr_logo.png",
+                                    width: 130,
+                                  ),
+                                ],
+                              ),
+                            ),
+
+
+
+
+                            Container(
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                    child: Text(
+                                      mensagemErro,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400,
+                                        letterSpacing: -0.5,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: _emailController,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
+                                        label: Text(
+                                            "Email",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                                  TextField(
+                                    controller: _passwordController,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(159, 159, 159, 1),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    obscureText: true,
+                                    enableSuggestions: false,
+                                    autocorrect: false,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
+                                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.solid, width: 1.5, color: Color.fromRGBO(92, 92, 92, 1),)),
+                                        label: Text(
+                                            "Senha",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(159, 159, 159, 1),
+                                            )
+                                        ),
+                                        border: OutlineInputBorder()
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10),),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home("", "", "", "")));
+                                    },
+                                    child: const Text(
+                                      'Entrar sem uma conta',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: -0.5,
+                                          decorationStyle: TextDecorationStyle.solid,
+                                          color: Color.fromRGBO(189, 177, 51, 0.8)
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),),
+                                ],
+                              ),
+                            ),
+
+
+
+
+
+
+
+
+
+                            // Spacer(),
                             Container(
                               child: Column(
                                 children: [

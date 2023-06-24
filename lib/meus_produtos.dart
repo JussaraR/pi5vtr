@@ -5,7 +5,7 @@ import 'package:pi5vtr/login.dart';
 import 'package:pi5vtr/card_produto.dart';
 import 'package:pi5vtr/produtos_empresa.dart';
 import 'package:pi5vtr/drawer_geral.dart';
-
+import 'package:pi5vtr/url_api.dart';
 
 class MeusProdutos extends StatefulWidget {
 
@@ -27,7 +27,7 @@ class _MeusProdutosState extends State<MeusProdutos> {
 
     Map<String, dynamic> data_home;
 
-    String url = "http://192.168.31.92:8080/meus_produtos";
+    String url = urlApi().urlEndpoint()+"/meus_produtos";
     http.Response response;
 
     String id_user = widget.id_user;
@@ -146,7 +146,7 @@ class _MeusProdutosState extends State<MeusProdutos> {
                                       color: Color.fromRGBO(4, 18, 31, 1),
                                     ),
                                     //child: Text("blabalbalbalbalbalba")
-                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"])
+                                    child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["meus_produtos"][index]["id_Produtos"], snapshot.data!["meus_produtos"][index]["nome_produto"], snapshot.data!["meus_produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["meus_produtos"][index]["img1"], "meus_produtos")
                                 );
                               },
                               childCount: snapshot.data!["meus_produtos"].length,

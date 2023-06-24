@@ -1,11 +1,10 @@
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import "dart:convert";
 import 'package:pi5vtr/card_produto.dart';
 import 'package:pi5vtr/drawer_geral.dart';
-
+import 'package:pi5vtr/url_api.dart';
 
 class ProdutosEmpresa extends StatefulWidget {
   String email;
@@ -26,7 +25,7 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
 
     Map<String, dynamic> data_home;
 
-    String url = "http://192.168.31.92:8080/produtos";
+    String url = urlApi().urlEndpoint()+"/produtos";
     http.Response response;
 
     String id_user = widget.id_user;
@@ -103,7 +102,7 @@ class _ProdutosEmpresaState extends State<ProdutosEmpresa> {
                                   color: Color.fromRGBO(4, 18, 31, 1),
                                 ),
                                 //child: Text("blabalbalbalbalbalba")
-                                child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"])
+                                child: cardProduto(widget.email, widget.password, widget.username, widget.id_user, snapshot.data!["produtos"][index]["id_Produtos"], snapshot.data!["produtos"][index]["nome_produto"], snapshot.data!["produtos"][index]["descricao_encurtada"], "images/"+snapshot.data!["produtos"][index]["img1"], "produtos_vtr")
                             );
                           },
                           childCount: snapshot.data!["produtos"].length,

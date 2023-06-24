@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class urlApi  {
 
   String urlEndpoint(){
-    return "http://192.168.31.92:8080";
+    return "https://b390-168-181-126-198.ngrok-free.app";
   }
 
 }
